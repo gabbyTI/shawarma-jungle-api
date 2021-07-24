@@ -2,28 +2,35 @@
 
 namespace App\Models;
 
-use App\Notifications\ResetPassword;
-use App\Notifications\VerifyEmail;
+use App\Notifications\ResetVendorPassword;
+use App\Notifications\VerifyVendorEmail;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Tymon\JWTAuth\Contracts\JWTSubject;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
-class User extends Authenticatable implements JWTSubject, MustVerifyEmail
+class Vendor extends Authenticatable implements JWTSubject, MustVerifyEmail
 {
     use HasFactory, Notifiable;
 
+    protected $guard = 'vendor-api';
+    protected $table = 'vendors';
     /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
     protected $fillable = [
-        "first_name",
-        "last_name",
-        "phone",
+        "business_name",
+        "manager_full_name",
+        "manager_phone",
         'email',
+        "address",
+        "isActive",
+        "bank_name",
+        "bank_account_number",
+        "bank_account_name",
         'password',
     ];
 
@@ -47,14 +54,15 @@ class User extends Authenticatable implements JWTSubject, MustVerifyEmail
     ];
 
 
+
     public function sendPasswordResetNotification($token)
     {
-        $this->notify(new ResetPassword($token));
+        $this->notify(new ResetVendorPassword($token));
     }
 
     public function sendEmailVerificationNotification()
     {
-        $this->notify(new VerifyEmail);
+        $this->notify(new VerifyVendorEmail);
     }
 
     /**

@@ -7,6 +7,8 @@ use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\ResetsPasswords;
 use Illuminate\Http\Request;
+use Auth;
+use Illuminate\Support\Facades\Password;
 
 class ResetPasswordController extends Controller
 {
@@ -22,6 +24,20 @@ class ResetPasswordController extends Controller
     */
 
     use ResetsPasswords;
+
+    public function broker()
+    {
+        $middlewareDriver = Auth::getDefaultDriver();
+        switch ($middlewareDriver) {
+            case 'user-api':
+                return Password::broker('users');
+                break;
+
+            case 'vendor-api':
+                return Password::broker('vendors');
+                break;
+        }
+    }
 
     protected function sendResetResponse(Request $request, $response)
     {

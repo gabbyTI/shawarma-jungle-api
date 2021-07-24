@@ -56,6 +56,8 @@ return [
 
     'client_url' => env('CLIENT_URL', null),
 
+    'vendor_url' => env('VENDOR_URL', null),
+
     'asset_url' => env('ASSET_URL', null),
 
     /*
