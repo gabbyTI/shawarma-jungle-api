@@ -3,7 +3,6 @@
 namespace App\Repositories\Eloquent\Criteria;
 
 use App\Repositories\Criteria\ICriterion;
-use Illuminate\Support\Facades\Schema;
 
 class ForUser implements ICriterion
 {
@@ -16,8 +15,6 @@ class ForUser implements ICriterion
 
     public function apply($model)
     {
-        if (Schema::hasColumn($model->getTable(), 'owner_id'))
-            return $model->where('owner_id', $this->user_id);
         return $model->where('user_id', $this->user_id);
     }
 }

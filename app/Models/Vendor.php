@@ -54,6 +54,12 @@ class Vendor extends Authenticatable implements JWTSubject, MustVerifyEmail
     ];
 
 
+    public function products()
+    {
+        return $this->hasMany(Product::class);
+    }
+
+
 
     public function sendPasswordResetNotification($token)
     {

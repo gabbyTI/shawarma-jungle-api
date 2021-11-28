@@ -16,7 +16,7 @@ class ApiResponder
         );
     }
 
-    public static function successResponse($message, $data = null)
+    public static function successResponse($message, $data = null, $code = 200)
     {
         return response()->json(
             [
@@ -24,6 +24,7 @@ class ApiResponder
                 "message" => $message,
                 "data" => $data
             ],
+            $code
         );
     }
 

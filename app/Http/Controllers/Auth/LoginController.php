@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Auth;
 
 use App\Helpers\ApiResponder;
 use App\Http\Controllers\Controller;
+use App\Http\Resources\UserResource;
+use App\Http\Resources\VendorResource;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
@@ -40,11 +42,15 @@ class LoginController extends Controller
 
     protected function sendLoginResponse(Request $request)
     {
+        $middlewareDriver = Auth::getDefaultDriver();
 
         $this->clearLoginAttempts($request);
 
         //get token
         $token = (string)$this->guard()->getToken();
+
+        // get user
+        $user = $this->guard()->user();
 
         //get expirydate
         $expiration = $this->guard()->getPayload()->get('exp');
@@ -52,7 +58,8 @@ class LoginController extends Controller
         $payload = [
             'token' => $token,
             'token_type' => 'bearer',
-            'expires_in' => $expiration
+            'expires_in' => $expiration,
+            'user' => $middlewareDriver == 'user-api' ? new UserResource($user) : new VendorResource($user)
         ];
 
         return ApiResponder::successResponse("Login successful", $payload);
