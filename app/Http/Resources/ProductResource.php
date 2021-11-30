@@ -18,9 +18,14 @@ class ProductResource extends JsonResource
             "id" => $this->id,
             "name" => $this->name,
             "slug" => $this->slug,
-            "image" => $this->image,
+            "price" => $this->price,
+            "images" => $this->images,
             "is-active" => $this->is_active == 0 ? false : true,
-            "vendor" => new VendorResource($this->whenLoaded('vendor'))
+            "vendor" => new VendorResource($this->whenLoaded('vendor')),
+            'create_dates' => [
+                'creadted_at_human' => $this->created_at->diffForHumans(),
+                'creadted_at' => $this->created_at,
+            ]
 
         ];
     }

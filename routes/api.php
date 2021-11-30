@@ -45,9 +45,9 @@ Route::group(['prefix' => 'vendor', 'middleware' => ['assign.guard:vendor-api', 
 
     Route::get('products', [ProductController::class, 'getVendorProducts']);
     Route::get('products/{product}', [ProductController::class, 'getVendorProduct']);
-    Route::post('products/create', [ProductController::class, 'createProduct']);
-    Route::patch('products/update/{product}', [ProductController::class, 'updateProduct']);
-    Route::delete('products/delete/{product}', [ProductController::class, 'deleteProduct']);
+    Route::post('products', [ProductController::class, 'createProduct']);
+    Route::put('products/{product}', [ProductController::class, 'updateProduct']);
+    Route::delete('products/{product}', [ProductController::class, 'deleteProduct']);
 });
 //                                            END OF AUTHENTICATED ROUTES
 
