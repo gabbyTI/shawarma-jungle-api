@@ -5,9 +5,12 @@ use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Auth\ResetPasswordController;
 use App\Http\Controllers\Auth\VerificationController;
+use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\ShippingDetailController;
 use App\Http\Controllers\User\MeController;
 use App\Http\Controllers\Vendor\VendorMeController;
+use App\Http\Controllers\VendorController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -37,6 +40,18 @@ Route::group(['middleware' => ['assign.guard:vendor-api']], function () {
 Route::group(['middleware' => ['assign.guard:user-api', 'auth:user-api']], function () {
     Route::post('logout', [LoginController::class, 'logout']);
     Route::post('account/delete', [LoginController::class, 'deleteAccount']);
+
+    Route::post('users/shipping-details', [ShippingDetailController::class, 'createShippingDetail']);
+    Route::get('users/shipping-details', [ShippingDetailController::class, 'getUserShippingDetails']);
+    Route::get('users/shipping-details/{shippingDetail}', [ShippingDetailController::class, 'getUserShippingDetail']);
+    Route::put('users/shipping-details/{shippingDetail}', [ShippingDetailController::class, 'updateShippingDetail']);
+    Route::delete('users/shipping-details/{shippingDetail}', [ShippingDetailController::class, 'deleteShippingDetail']);
+
+    Route::get('vendors', [VendorController::class, 'getActiveVendors']);
+    Route::get('vendors/{vendor}', [VendorController::class, 'getVendor']);
+
+    Route::post('orders/users/{user}/vendors/{vendor}', [OrderController::class, 'placeOrder']);
+    Route::get('orders/users', [OrderController::class, 'getUsersOrders']);
 });
 
 Route::group(['prefix' => 'vendor', 'middleware' => ['assign.guard:vendor-api', 'auth:vendor-api']], function () {

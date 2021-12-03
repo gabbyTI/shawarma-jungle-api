@@ -116,7 +116,7 @@ class ProductController extends Controller
 
     public function getVendorProduct(Product $product)
     {
-        $this->authorize('view', $product);
+        // $this->authorize('view', $product);
 
         return ApiResponder::successResponse("Successful", new ProductResource($product));
     }

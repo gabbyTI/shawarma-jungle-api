@@ -18,6 +18,7 @@ class VendorResource extends JsonResource
             'id' => $this->id,
             'business_name' => $this->business_name,
             'email' => $this->email,
+            'products' =>  ProductResource::collection($this->whenLoaded('products')),
             'create_dates' => [
                 'creadted_at_human' => $this->created_at->diffForHumans(),
                 'creadted_at' => $this->created_at,

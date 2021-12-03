@@ -18,7 +18,8 @@ class Product extends Model
         'price',
         'is_active',
         'upload_successful',
-        'disk'
+        'disk',
+        'description'
     ];
 
     public function vendor()
