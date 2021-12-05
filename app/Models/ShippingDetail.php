@@ -24,4 +24,9 @@ class ShippingDetail extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+    public function order()
+    {
+        return $this->belongsTo(User::class);
+    }
 }

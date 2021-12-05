@@ -25,7 +25,11 @@ class ProductResource extends JsonResource
             'create_dates' => [
                 'creadted_at_human' => $this->created_at->diffForHumans(),
                 'creadted_at' => $this->created_at,
-            ]
+            ],
+            "update_dates" => [
+                "updated_at_human" => $this->updated_at->diffForHumans(),
+                "updated_at" => $this->updated_at,
+            ],
 
         ];
     }

@@ -35,4 +35,9 @@ class Order extends Model
     {
         return $this->belongsTo(Vendor::class);
     }
+
+    public function shippingDetail()
+    {
+        return $this->hasOne(ShippingDetail::class);
+    }
 }

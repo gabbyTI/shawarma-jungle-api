@@ -7,6 +7,7 @@ use App\Http\Controllers\Auth\ResetPasswordController;
 use App\Http\Controllers\Auth\VerificationController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\SettingController;
 use App\Http\Controllers\ShippingDetailController;
 use App\Http\Controllers\User\MeController;
 use App\Http\Controllers\Vendor\VendorMeController;
@@ -41,6 +42,9 @@ Route::group(['middleware' => ['assign.guard:user-api', 'auth:user-api']], funct
     Route::post('logout', [LoginController::class, 'logout']);
     Route::post('account/delete', [LoginController::class, 'deleteAccount']);
 
+    Route::put('settings/profile', [SettingController::class, 'updateUserProfile']);
+    Route::put('settings/password', [SettingController::class, 'updateUserPassword']);
+
     Route::post('users/shipping-details', [ShippingDetailController::class, 'createShippingDetail']);
     Route::get('users/shipping-details', [ShippingDetailController::class, 'getUserShippingDetails']);
     Route::get('users/shipping-details/{shippingDetail}', [ShippingDetailController::class, 'getUserShippingDetail']);
@@ -50,19 +54,24 @@ Route::group(['middleware' => ['assign.guard:user-api', 'auth:user-api']], funct
     Route::get('vendors', [VendorController::class, 'getActiveVendors']);
     Route::get('vendors/{vendor}', [VendorController::class, 'getVendor']);
 
-    Route::post('orders/users/{user}/vendors/{vendor}', [OrderController::class, 'placeOrder']);
-    Route::get('orders/users', [OrderController::class, 'getUsersOrders']);
+    Route::post('orders/user/{user}/vendor/{vendor}', [OrderController::class, 'placeOrder']);
+    Route::get('orders/user', [OrderController::class, 'getUserOrders']);
 });
 
-Route::group(['prefix' => 'vendor', 'middleware' => ['assign.guard:vendor-api', 'auth:vendor-api']], function () {
+Route::group(['prefix' => 'vendors', 'middleware' => ['assign.guard:vendor-api', 'auth:vendor-api']], function () {
     Route::post('logout', [LoginController::class, 'logout']);
     Route::post('account/delete', [LoginController::class, 'deleteAccount']);
+
+    Route::put('settings/profile', [SettingController::class, 'updateVendorProfile']);
+    Route::put('settings/password', [SettingController::class, 'updateVendorPassword']);
 
     Route::get('products', [ProductController::class, 'getVendorProducts']);
     Route::get('products/{product}', [ProductController::class, 'getVendorProduct']);
     Route::post('products', [ProductController::class, 'createProduct']);
     Route::put('products/{product}', [ProductController::class, 'updateProduct']);
     Route::delete('products/{product}', [ProductController::class, 'deleteProduct']);
+
+    Route::get('orders/vendor', [OrderController::class, 'getVendorOrders']);
 });
 //                                            END OF AUTHENTICATED ROUTES
 

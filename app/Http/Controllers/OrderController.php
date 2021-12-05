@@ -8,6 +8,7 @@ use App\Models\User;
 use App\Models\Vendor;
 use App\Repositories\Contracts\IOrder;
 use App\Repositories\Eloquent\Criteria\ForUser;
+use App\Repositories\Eloquent\Criteria\ForVendor;
 use Illuminate\Http\Request;
 
 class OrderController extends Controller
@@ -25,7 +26,7 @@ class OrderController extends Controller
             'amount' => ['required'],
             'order_products' => ['required', 'array'],
             'shipping_address' => ['required_if:is_delivery,true', 'integer'],
-            'is_delivery' => ['required', 'string'],
+            'is_delivery' => ['required', 'boolean'],
             'payment_type' => ['required', 'string'],
             'delivery_fee' => ['required_if:is_delivery,true', 'integer']
         ]);
@@ -36,7 +37,7 @@ class OrderController extends Controller
             'vendor_id' => $vendor->id,
             'amount' => $request->amount,
             'order_products' => $request->order_products,
-            'shipping_address_id' => $request->shipping_address,
+            'shipping_detail_id' => $request->shipping_address,
             'delivery_type' => $request->delivery_type,
             'payment_type' => $request->payment_type,
         ]);
@@ -44,12 +45,21 @@ class OrderController extends Controller
         return ApiResponder::successResponse("Order created", new OrderResource($order), 201);
     }
 
-    public function getUsersOrders()
+    public function getUserOrders()
     {
         $orders = $this->orders->withCriteria([
             new ForUser(auth()->id())
         ])->all();
 
         return ApiResponder::successResponse("Fetched user orders", OrderResource::collection($orders));
+    }
+
+    public function getVendorOrders()
+    {
+        $orders = $this->orders->withCriteria([
+            new ForVendor(auth()->id())
+        ])->all();
+
+        return ApiResponder::successResponse("Fetched vendor orders", OrderResource::collection($orders));
     }
 }

@@ -22,7 +22,7 @@ class User extends Authenticatable implements JWTSubject, MustVerifyEmail
     protected $fillable = [
         "first_name",
         "last_name",
-        "phone",
+        // "phone",
         'email',
         'password',
     ];
@@ -56,6 +56,11 @@ class User extends Authenticatable implements JWTSubject, MustVerifyEmail
         return $this->hasMany(ShippingDetail::class);
     }
 
+
+    public function getFullnameAttribute()
+    {
+        return $this->first_name . " " . $this->last_name;
+    }
 
     public function sendPasswordResetNotification($token)
     {

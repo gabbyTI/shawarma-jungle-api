@@ -21,9 +21,9 @@ class OrderResource extends JsonResource
             'payment_type' => $this->payment_type,
             'shipping_method' => $this->delivery_type,
             'order_items' => $this->order_products,
-            "shipping_details" => '<RETURN SHIPPING DETAILS>',
+            'shippiping_details' => new ShippingDetailResource($this->whenLoaded('shippingDetail')),
             "vendor" => new VendorResource($this->whenLoaded('vendor')),
-            "user" => new VendorResource($this->whenLoaded('user')),
+            "user" => new UserResource($this->whenLoaded('user')),
             'create_dates' => [
                 'creadted_at_human' => $this->created_at->diffForHumans(),
                 'creadted_at' => $this->created_at,
