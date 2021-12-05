@@ -54,7 +54,7 @@ Route::group(['middleware' => ['assign.guard:user-api', 'auth:user-api']], funct
     Route::get('vendors', [VendorController::class, 'getActiveVendors']);
     Route::get('vendors/{vendor}', [VendorController::class, 'getVendor']);
 
-    Route::post('orders/user/{user}/vendor/{vendor}', [OrderController::class, 'placeOrder']);
+    Route::post('orders/user', [OrderController::class, 'placeOrder']);
     Route::get('orders/user', [OrderController::class, 'getUserOrders']);
 });
 

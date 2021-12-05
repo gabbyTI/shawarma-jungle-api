@@ -23,6 +23,7 @@ class OrderController extends Controller
     public function placeOrder(Request $request, User $user, Vendor $vendor)
     {
         $request->validate([
+            'vendor_id' => ['required', 'integer'],
             'amount' => ['required'],
             'order_products' => ['required', 'array'],
             'shipping_address' => ['required_if:is_delivery,true', 'integer'],
@@ -33,8 +34,8 @@ class OrderController extends Controller
         // dd($request->all());
 
         $order = $this->orders->create([
-            'user_id' => $user->id,
-            'vendor_id' => $vendor->id,
+            'user_id' => auth()->id(),
+            'vendor_id' => $request->vendor_id,
             'amount' => $request->amount,
             'order_products' => $request->order_products,
             'shipping_detail_id' => $request->shipping_address,
