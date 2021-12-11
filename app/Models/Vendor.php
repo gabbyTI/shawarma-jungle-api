@@ -8,11 +8,12 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Tymon\JWTAuth\Contracts\JWTSubject;
+use Grimzy\LaravelMysqlSpatial\Eloquent\SpatialTrait;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Vendor extends Authenticatable implements JWTSubject, MustVerifyEmail
 {
-    use HasFactory, Notifiable;
+    use HasFactory, Notifiable, SpatialTrait;
 
     protected $guard = 'vendor-api';
     protected $table = 'vendors';
@@ -32,6 +33,7 @@ class Vendor extends Authenticatable implements JWTSubject, MustVerifyEmail
         "bank_account_number",
         "bank_account_name",
         'password',
+        'location'
     ];
 
     /**
@@ -51,6 +53,10 @@ class Vendor extends Authenticatable implements JWTSubject, MustVerifyEmail
      */
     protected $casts = [
         'email_verified_at' => 'datetime',
+    ];
+
+    protected $spatialFields = [
+        'location'
     ];
 
 

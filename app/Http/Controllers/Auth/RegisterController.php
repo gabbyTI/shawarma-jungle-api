@@ -14,6 +14,7 @@ use Request;
 use Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use Grimzy\LaravelMysqlSpatial\Types\Point;
 
 class RegisterController extends Controller
 {
@@ -77,6 +78,8 @@ class RegisterController extends Controller
                     'bank_name' => ['required', 'string', 'max:255'],
                     'bank_account_number' => ['required', 'string', 'max:10'],
                     'bank_account_name' => ['required', 'string', 'max:255'],
+                    'location.latitude' => ['required', 'numeric', 'min:-90', 'max:90'],
+                    'location.longitude' => ['required', 'numeric', 'min:-180', 'max:180'],
                     'password' => ['required', 'string', 'min:8', 'confirmed'],
                 ]);
                 break;
@@ -104,6 +107,7 @@ class RegisterController extends Controller
                 break;
 
             case 'vendor-api':
+                $location = new Point($data['location']['latitude'], $data['location']['longitude']);
                 return $this->vendors->create([
                     'business_name' => $data['business_name'],
                     'manager_full_name' => $data['manager_full_name'],
@@ -113,6 +117,7 @@ class RegisterController extends Controller
                     'bank_name' => $data['bank_name'],
                     'bank_account_number' => $data['bank_account_number'],
                     'bank_account_name' => $data['bank_account_name'],
+                    'location' => $location,
                     'password' => Hash::make($data['password']),
                 ]);
                 break;

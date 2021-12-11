@@ -11,6 +11,7 @@ use App\Rules\CheckSamePassword;
 use App\Rules\MatchOldPassword;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Grimzy\LaravelMysqlSpatial\Types\Point;
 
 class SettingController extends Controller
 {
@@ -65,9 +66,22 @@ class SettingController extends Controller
             "bank_name" => ['required', 'string'],
             "bank_account_number" => ['required', 'string', 'max:10', 'min:10'],
             "bank_account_name" => ['required', 'string'],
+            'location.latitude' => ['required', 'numeric', 'min:-90', 'max:90'],
+            'location.longitude' => ['required', 'numeric', 'min:-180', 'max:180'],
         ]);
 
-        $vendor = $this->vendors->update(auth()->id(), $request->all());
+        $location = new Point($request->location['latitude'], $request->location['longitude']);
+
+        $vendor = $this->vendors->update(auth()->id(), [
+            "business_name" => $request->business_name,
+            "manager_full_name" => $request->manager_full_name,
+            "manager_phone" => $request->manager_phone,
+            "address" => $request->address,
+            "bank_name" => $request->bank_name,
+            "bank_account_number" => $request->bank_account_number,
+            "bank_account_name" => $request->bank_account_name,
+            'location' => $location,
+        ]);
 
         return ApiResponder::successResponse("Updated", new VendorResource($vendor));
     }

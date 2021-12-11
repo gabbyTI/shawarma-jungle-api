@@ -29,8 +29,9 @@ use Illuminate\Support\Facades\Route;
 // API Version 1
 // Route::group(['prefix' => 'v1'], function () {
 //                                            PUBLIC ROUTES
-Route::group(['middleware' => ['assign.guard:user-api', 'auth:user-api']], function () {
+Route::group(['middleware' => ['assign.guard:user-api']], function () {
     Route::get('me', [MeController::class, 'getMe']);
+    Route::get('search/vendors', [VendorController::class, 'search']);
 });
 Route::group(['middleware' => ['assign.guard:vendor-api']], function () {
     Route::get('vendor/me', [VendorMeController::class, 'getMe']);
@@ -58,7 +59,7 @@ Route::group(['middleware' => ['assign.guard:user-api', 'auth:user-api']], funct
     Route::get('orders/user', [OrderController::class, 'getUserOrders']);
 });
 
-Route::group(['prefix' => 'vendors', 'middleware' => ['assign.guard:vendor-api', 'auth:vendor-api']], function () {
+Route::group(['prefix' => 'vendor', 'middleware' => ['assign.guard:vendor-api', 'auth:vendor-api']], function () {
     Route::post('logout', [LoginController::class, 'logout']);
     Route::post('account/delete', [LoginController::class, 'deleteAccount']);
 

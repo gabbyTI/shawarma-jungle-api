@@ -25,6 +25,7 @@ class VendorResource extends JsonResource
             'business_account_number' => $this->bank_account_number,
             'business_account_name' => $this->bank_account_name,
             "isActive" => $this->isActive == 0 ? false : true,
+            "location" => $this->location,
             'products' =>  ProductResource::collection($this->whenLoaded('products')),
             'create_dates' => [
                 'creadted_at_human' => $this->created_at->diffForHumans(),
