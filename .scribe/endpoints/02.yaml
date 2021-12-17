@@ -1,0 +1,265 @@
+name: "Order Management"
+description: ""
+endpoints:
+  - httpMethods:
+      - POST
+    uri: api/orders/user
+    metadata:
+      title: "Place order"
+      description: "This endpoint is sent when a user send a request to place an order"
+      authenticated: true
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    queryParameters: []
+    bodyParameters:
+      vendor_id:
+        name: vendor_id
+        description: "Id number of the vendor theuser is ordering from."
+        required: true
+        example: 1
+        type: integer
+      amount:
+        name: amount
+        description: "Total amount of the order(including the delivery fee)"
+        required: true
+        example: 1200
+        type: integer
+      order_products:
+        name: order_products
+        description: "Array of maps contatining each of the cart items"
+        required: true
+        example:
+        type: array of objects
+      is_delivery:
+        name: is_delivery
+        description:
+        required: true
+        example:
+        type: boolean
+      payment_type:
+        name: payment_type
+        description: "this should be either card or cash, this field is required if the is_deliver field is TRUE"
+        required: false
+        example:
+        type: string
+    responses:
+      - status: 201
+        content: |
+          {
+            "success": true,
+            "message": "Order created",
+            "data": {
+                "id": 3,
+                "amount": "3500",
+                "payment_type": "card",
+                "shipping_method": null,
+                "order_items": [
+                    {
+                        "product_id": 1,
+                        "name": "Obi sharwama",
+                        "quantity": 2,
+                        "price": 1000
+                    },
+                    {
+                        "product_id": 1,
+                        "name": "water",
+                        "quantity": 2,
+                        "price": 100
+                    }
+                ],
+                "create_dates": {
+                    "creadted_at_human": "1 second ago",
+                    "creadted_at": "2021-12-16T23:32:58.000000Z"
+                }
+            }
+          }
+        headers: []
+        description: "201 Created"
+    responseFields: []
+  - httpMethods:
+      - GET
+    uri: api/orders/user
+    metadata:
+      title: "Get user orders"
+      description: "Get list of the currently authenticated user's orders"
+      authenticated: true
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    queryParameters: []
+    bodyParameters: []
+    responses:
+      - status: 200
+        content: |
+          {
+            "success": true,
+            "message": "Fetched user orders",
+            "data": [
+                {
+                    "id": 1,
+                    "amount": 3500,
+                    "payment_type": "card",
+                    "shipping_method": null,
+                    "order_items": [
+                        {
+                            "name": "Obi sharwama",
+                            "price": 1000,
+                            "quantity": 2,
+                            "product_id": 1
+                        },
+                        {
+                            "name": "Coke",
+                            "price": 300,
+                            "quantity": 1,
+                            "product_id": 1
+                        },
+                        {
+                            "name": "water",
+                            "price": 100,
+                            "quantity": 2,
+                            "product_id": 1
+                        }
+                    ],
+                    "create_dates": {
+                        "creadted_at_human": "1 week ago",
+                        "creadted_at": "2021-12-04T19:08:54.000000Z"
+                    }
+                },
+                {
+                    "id": 2,
+                    "amount": 3500,
+                    "payment_type": "card",
+                    "shipping_method": null,
+                    "order_items": [
+                        {
+                            "name": "Obi sharwama",
+                            "price": 1000,
+                            "quantity": 2,
+                            "product_id": 1
+                        },
+                        {
+                            "name": "water",
+                            "price": 100,
+                            "quantity": 2,
+                            "product_id": 1
+                        }
+                    ],
+                    "create_dates": {
+                        "creadted_at_human": "1 week ago",
+                        "creadted_at": "2021-12-05T16:15:41.000000Z"
+                    }
+                },
+                {
+                    "id": 3,
+                    "amount": 3500,
+                    "payment_type": "card",
+                    "shipping_method": null,
+                    "order_items": [
+                        {
+                            "name": "Obi sharwama",
+                            "price": 1000,
+                            "quantity": 2,
+                            "product_id": 1
+                        },
+                        {
+                            "name": "water",
+                            "price": 100,
+                            "quantity": 2,
+                            "product_id": 1
+                        }
+                    ],
+                    "create_dates": {
+                        "creadted_at_human": "5 minutes ago",
+                        "creadted_at": "2021-12-16T23:32:58.000000Z"
+                    }
+                }
+            ]
+          }
+        headers:
+          cache-control: "no-cache, private"
+          content-type: application/json
+          access-control-allow-origin: "*"
+        description: "200"
+    responseFields: []
+  - httpMethods:
+      - GET
+    uri: api/vendor/orders/vendor
+    metadata:
+      title: "Get vendor orders"
+      description: "Get list of the currently authenticated vendor's orders"
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    queryParameters: []
+    bodyParameters: []
+    responses:
+      - status: 200
+        content: |
+          {
+            "success": true,
+            "message": "Fetched vendor orders",
+            "data": [
+                {
+                    "id": 4,
+                    "amount": 3500,
+                    "payment_type": "card",
+                    "shipping_method": null,
+                    "order_items": [
+                        {
+                            "name": "Obi sharwama",
+                            "price": 1000,
+                            "quantity": 2,
+                            "product_id": 1
+                        },
+                        {
+                            "name": "water",
+                            "price": 100,
+                            "quantity": 2,
+                            "product_id": 1
+                        }
+                    ],
+                    "create_dates": {
+                        "creadted_at_human": "20 seconds ago",
+                        "creadted_at": "2021-12-16T23:45:56.000000Z"
+                    }
+                },
+                {
+                    "id": 5,
+                    "amount": 3500,
+                    "payment_type": "card",
+                    "shipping_method": null,
+                    "order_items": [
+                        {
+                            "name": "Obi sharwama",
+                            "price": 1000,
+                            "quantity": 2,
+                            "product_id": 1
+                        },
+                        {
+                            "name": "water",
+                            "price": 100,
+                            "quantity": 2,
+                            "product_id": 1
+                        }
+                    ],
+                    "create_dates": {
+                        "creadted_at_human": "13 seconds ago",
+                        "creadted_at": "2021-12-16T23:46:03.000000Z"
+                    }
+                }
+            ]
+          }
+        headers:
+          cache-control: "no-cache, private"
+          content-type: application/json
+          access-control-allow-origin: "*"
+        description: null
+    responseFields: []

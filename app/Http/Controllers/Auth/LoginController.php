@@ -12,6 +12,9 @@ use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
 use Auth;
 
+/**
+ * @group Account Management
+ */
 class LoginController extends Controller
 {
     use AuthenticatesUsers;

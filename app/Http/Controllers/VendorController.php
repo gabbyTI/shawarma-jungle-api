@@ -10,6 +10,9 @@ use App\Repositories\Eloquent\Criteria\EagerLoad;
 use App\Repositories\Eloquent\Criteria\IsActiveVendor;
 use Illuminate\Http\Request;
 
+/**
+ * @group Vendor Management
+ */
 class VendorController extends Controller
 {
     protected $vendors;

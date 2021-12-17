@@ -1,0 +1,19 @@
+{
+    "success": true,
+    "message": "Updated",
+    "data": {
+        "id": 1,
+        "first_name": "John",
+        "last_name": "Doe",
+        "fullname": "John Doe",
+        "email": "gabe@gmail.com",
+        "create_dates": {
+            "creadted_at_human": "1 week ago",
+            "creadted_at": "2021-12-03T09:55:40.000000Z"
+        },
+        "update_dates": {
+            "updated_at_human": "1 week ago",
+            "updated_at": "2021-12-03T23:08:27.000000Z"
+        }
+    }
+}

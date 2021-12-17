@@ -1,0 +1,27 @@
+{
+    "logged_in": true,
+    "user": {
+        "id": 1,
+        "business_name": "Crispy pies pastery",
+        "manager_full_name": "Jennifer sawyer",
+        "manager_phone": "09074563234",
+        "email": "king@gmail.com",
+        "business_address": "23 faker street",
+        "business_bank_name": "Delta bank",
+        "business_account_number": "9921341112",
+        "business_account_name": "Crispy pies pastery",
+        "isActive": true,
+        "location": {
+            "type": "Point",
+            "coordinates": [170.99456, -30.23456]
+        },
+        "create_dates": {
+            "creadted_at_human": "5 days ago",
+            "creadted_at": "2021-12-03T09:53:17.000000Z"
+        },
+        "update_dates": {
+            "updated_at_human": "39 seconds ago",
+            "updated_at": "2021-12-08T18:21:36.000000Z"
+        }
+    }
+}

@@ -15,6 +15,9 @@ use Illuminate\Http\Request;
 use Resquest as IRequest;
 use Illuminate\Support\Facades\URL;
 
+/**
+ * @group Account Management
+ */
 class VerificationController extends Controller
 {
     protected $users;

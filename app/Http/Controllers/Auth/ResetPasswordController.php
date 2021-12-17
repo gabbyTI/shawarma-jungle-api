@@ -10,6 +10,9 @@ use Illuminate\Http\Request;
 use Auth;
 use Illuminate\Support\Facades\Password;
 
+/**
+ * @group Account Management
+ */
 class ResetPasswordController extends Controller
 {
     /*

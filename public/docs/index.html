@@ -1,0 +1,4440 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>Laravel Documentation</title>
+
+    <link href="https://fonts.googleapis.com/css?family=PT+Sans&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="../docs/css/theme-default.style.css" media="screen">
+    <link rel="stylesheet" href="../docs/css/theme-default.print.css" media="print">
+
+    <script src="https://cdn.jsdelivr.net/npm/lodash@4.17.10/lodash.min.js"></script>
+
+    <link rel="stylesheet"
+          href="https://unpkg.com/@highlightjs/cdn-assets@10.7.2/styles/obsidian.min.css">
+    <script src="https://unpkg.com/@highlightjs/cdn-assets@10.7.2/highlight.min.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jets/0.14.1/jets.min.js"></script>
+
+    <style id="language-style">
+        /* starts out as display none and is replaced with js later  */
+                    body .content .bash-example code { display: none; }
+                    body .content .javascript-example code { display: none; }
+            </style>
+
+
+    <script src="../docs/js/theme-default-3.19.1.js"></script>
+
+</head>
+
+<body data-languages="[&quot;bash&quot;,&quot;javascript&quot;]">
+
+<a href="#" id="nav-button">
+    <span>
+        MENU
+        <img src="../docs/images/navbar.png" alt="navbar-image" />
+    </span>
+</a>
+<div class="tocify-wrapper">
+    
+            <div class="lang-selector">
+                                            <button type="button" class="lang-button" data-language-name="bash">bash</button>
+                                            <button type="button" class="lang-button" data-language-name="javascript">javascript</button>
+                    </div>
+    
+    <div class="search">
+        <input type="text" class="search" id="input-search" placeholder="Search">
+    </div>
+
+    <div id="toc">
+                                                                            <ul id="tocify-header-0" class="tocify-header">
+                    <li class="tocify-item level-1" data-unique="introduction">
+                        <a href="#introduction">Introduction</a>
+                    </li>
+                                            
+                                                                    </ul>
+                                                <ul id="tocify-header-1" class="tocify-header">
+                    <li class="tocify-item level-1" data-unique="authenticating-requests">
+                        <a href="#authenticating-requests">Authenticating requests</a>
+                    </li>
+                                            
+                                                </ul>
+                    
+                    <ul id="tocify-header-2" class="tocify-header">
+                <li class="tocify-item level-1" data-unique="account-management">
+                    <a href="#account-management">Account Management</a>
+                </li>
+                                    <ul id="tocify-subheader-account-management" class="tocify-subheader">
+                                                    <li class="tocify-item level-2" data-unique="account-management-POSTapi-password-email">
+                        <a href="#account-management-POSTapi-password-email">Send user password reset link</a>
+                    </li>
+                                    <li class="tocify-item level-2" data-unique="account-management-POSTapi-account-delete">
+                        <a href="#account-management-POSTapi-account-delete">Delete User Account</a>
+                    </li>
+                                    <li class="tocify-item level-2" data-unique="account-management-POSTapi-vendor-password-email">
+                        <a href="#account-management-POSTapi-vendor-password-email">Send vendor password reset link</a>
+                    </li>
+                                    <li class="tocify-item level-2" data-unique="account-management-POSTapi-vendor-account-delete">
+                        <a href="#account-management-POSTapi-vendor-account-delete">Delete Vendor Account</a>
+                    </li>
+                                    <li class="tocify-item level-2" data-unique="account-management-POSTapi-register-user">
+                        <a href="#account-management-POSTapi-register-user">User Registration</a>
+                    </li>
+                                    <li class="tocify-item level-2" data-unique="account-management-POSTapi-verification-verify--user-">
+                        <a href="#account-management-POSTapi-verification-verify--user-">Verify user email</a>
+                    </li>
+                                    <li class="tocify-item level-2" data-unique="account-management-POSTapi-verification-resend">
+                        <a href="#account-management-POSTapi-verification-resend">Resend user email verification link</a>
+                    </li>
+                                    <li class="tocify-item level-2" data-unique="account-management-POSTapi-login">
+                        <a href="#account-management-POSTapi-login">User Login</a>
+                    </li>
+                                    <li class="tocify-item level-2" data-unique="account-management-POSTapi-password-reset">
+                        <a href="#account-management-POSTapi-password-reset">Reset user&#039;s password.</a>
+                    </li>
+                                    <li class="tocify-item level-2" data-unique="account-management-POSTapi-vendor-register">
+                        <a href="#account-management-POSTapi-vendor-register">Vendor Registration</a>
+                    </li>
+                                    <li class="tocify-item level-2" data-unique="account-management-POSTapi-vendor-verification-verify--vendor-">
+                        <a href="#account-management-POSTapi-vendor-verification-verify--vendor-">Verify vendor email</a>
+                    </li>
+                                    <li class="tocify-item level-2" data-unique="account-management-POSTapi-vendor-verification-resend">
+                        <a href="#account-management-POSTapi-vendor-verification-resend">Resend vendor email verification link</a>
+                    </li>
+                                    <li class="tocify-item level-2" data-unique="account-management-POSTapi-vendor-login">
+                        <a href="#account-management-POSTapi-vendor-login">Vendor Login</a>
+                    </li>
+                                    <li class="tocify-item level-2" data-unique="account-management-POSTapi-vendor-password-reset">
+                        <a href="#account-management-POSTapi-vendor-password-reset">Reset vendor&#039;s password.</a>
+                    </li>
+                                    <li class="tocify-item level-2" data-unique="account-management-POSTapi-logout">
+                        <a href="#account-management-POSTapi-logout">Logout User</a>
+                    </li>
+                                    <li class="tocify-item level-2" data-unique="account-management-POSTapi-vendor-logout">
+                        <a href="#account-management-POSTapi-vendor-logout">Logout Vendor</a>
+                    </li>
+                                                    </ul>
+                            </ul>
+                    <ul id="tocify-header-3" class="tocify-header">
+                <li class="tocify-item level-1" data-unique="order-management">
+                    <a href="#order-management">Order Management</a>
+                </li>
+                                    <ul id="tocify-subheader-order-management" class="tocify-subheader">
+                                                    <li class="tocify-item level-2" data-unique="order-management-POSTapi-orders-user">
+                        <a href="#order-management-POSTapi-orders-user">Place order</a>
+                    </li>
+                                    <li class="tocify-item level-2" data-unique="order-management-GETapi-orders-user">
+                        <a href="#order-management-GETapi-orders-user">Get user orders</a>
+                    </li>
+                                    <li class="tocify-item level-2" data-unique="order-management-GETapi-vendor-orders-vendor">
+                        <a href="#order-management-GETapi-vendor-orders-vendor">Get vendor orders</a>
+                    </li>
+                                                    </ul>
+                            </ul>
+                    <ul id="tocify-header-4" class="tocify-header">
+                <li class="tocify-item level-1" data-unique="product-management">
+                    <a href="#product-management">Product Management</a>
+                </li>
+                                    <ul id="tocify-subheader-product-management" class="tocify-subheader">
+                                                    <li class="tocify-item level-2" data-unique="product-management-GETapi-vendor-products">
+                        <a href="#product-management-GETapi-vendor-products">Get vendors products</a>
+                    </li>
+                                    <li class="tocify-item level-2" data-unique="product-management-GETapi-vendor-products--product-">
+                        <a href="#product-management-GETapi-vendor-products--product-">Get a product</a>
+                    </li>
+                                    <li class="tocify-item level-2" data-unique="product-management-POSTapi-vendor-products">
+                        <a href="#product-management-POSTapi-vendor-products">Create product</a>
+                    </li>
+                                    <li class="tocify-item level-2" data-unique="product-management-POSTapi-vendor-products--product-">
+                        <a href="#product-management-POSTapi-vendor-products--product-">Update product</a>
+                    </li>
+                                    <li class="tocify-item level-2" data-unique="product-management-DELETEapi-vendor-products--product-">
+                        <a href="#product-management-DELETEapi-vendor-products--product-">Delete product</a>
+                    </li>
+                                                    </ul>
+                            </ul>
+                    <ul id="tocify-header-5" class="tocify-header">
+                <li class="tocify-item level-1" data-unique="profile-management">
+                    <a href="#profile-management">Profile Management</a>
+                </li>
+                                    <ul id="tocify-subheader-profile-management" class="tocify-subheader">
+                                                    <li class="tocify-item level-2" data-unique="profile-management-PUTapi-settings-profile">
+                        <a href="#profile-management-PUTapi-settings-profile">Updating user profile</a>
+                    </li>
+                                    <li class="tocify-item level-2" data-unique="profile-management-GETapi-vendor-me">
+                        <a href="#profile-management-GETapi-vendor-me">Vendor Me-Endpoint</a>
+                    </li>
+                                    <li class="tocify-item level-2" data-unique="profile-management-PUTapi-settings-password">
+                        <a href="#profile-management-PUTapi-settings-password">Change user password</a>
+                    </li>
+                                    <li class="tocify-item level-2" data-unique="profile-management-PUTapi-vendor-settings-profile">
+                        <a href="#profile-management-PUTapi-vendor-settings-profile">Updating vendor profile</a>
+                    </li>
+                                    <li class="tocify-item level-2" data-unique="profile-management-PUTapi-vendor-settings-password">
+                        <a href="#profile-management-PUTapi-vendor-settings-password">Change vendor password</a>
+                    </li>
+                                    <li class="tocify-item level-2" data-unique="profile-management-GETapi-me">
+                        <a href="#profile-management-GETapi-me">User Me-Endpoint</a>
+                    </li>
+                                                    </ul>
+                            </ul>
+                    <ul id="tocify-header-6" class="tocify-header">
+                <li class="tocify-item level-1" data-unique="shipping-details-management">
+                    <a href="#shipping-details-management">Shipping Details Management</a>
+                </li>
+                                    <ul id="tocify-subheader-shipping-details-management" class="tocify-subheader">
+                                                    <li class="tocify-item level-2" data-unique="shipping-details-management-POSTapi-users-shipping-details">
+                        <a href="#shipping-details-management-POSTapi-users-shipping-details">Create Shipping detail</a>
+                    </li>
+                                    <li class="tocify-item level-2" data-unique="shipping-details-management-GETapi-users-shipping-details">
+                        <a href="#shipping-details-management-GETapi-users-shipping-details">Get all shipping details</a>
+                    </li>
+                                    <li class="tocify-item level-2" data-unique="shipping-details-management-GETapi-users-shipping-details--shippingDetail-">
+                        <a href="#shipping-details-management-GETapi-users-shipping-details--shippingDetail-">Get a shipping detail</a>
+                    </li>
+                                    <li class="tocify-item level-2" data-unique="shipping-details-management-PUTapi-users-shipping-details--shippingDetail-">
+                        <a href="#shipping-details-management-PUTapi-users-shipping-details--shippingDetail-">Update Shipping Detail</a>
+                    </li>
+                                    <li class="tocify-item level-2" data-unique="shipping-details-management-DELETEapi-users-shipping-details--shippingDetail-">
+                        <a href="#shipping-details-management-DELETEapi-users-shipping-details--shippingDetail-">Delete shipping detail</a>
+                    </li>
+                                                    </ul>
+                            </ul>
+                    <ul id="tocify-header-7" class="tocify-header">
+                <li class="tocify-item level-1" data-unique="vendor-management">
+                    <a href="#vendor-management">Vendor Management</a>
+                </li>
+                                    <ul id="tocify-subheader-vendor-management" class="tocify-subheader">
+                                                    <li class="tocify-item level-2" data-unique="vendor-management-GETapi-search-vendors">
+                        <a href="#vendor-management-GETapi-search-vendors">Search for vendors</a>
+                    </li>
+                                    <li class="tocify-item level-2" data-unique="vendor-management-GETapi-vendors">
+                        <a href="#vendor-management-GETapi-vendors">List of vendors</a>
+                    </li>
+                                    <li class="tocify-item level-2" data-unique="vendor-management-GETapi-vendors--vendor-">
+                        <a href="#vendor-management-GETapi-vendors--vendor-">Get a vevndor</a>
+                    </li>
+                                                    </ul>
+                            </ul>
+        
+                        
+            </div>
+
+            <ul class="toc-footer" id="toc-footer">
+                            <li><a href="../docs/collection.json">View Postman collection</a></li>
+                            <li><a href="../docs/openapi.yaml">View OpenAPI spec</a></li>
+                            <li><a href="http://github.com/knuckleswtf/scribe">Documentation powered by Scribe ✍</a></li>
+                    </ul>
+        <ul class="toc-footer" id="last-updated">
+        <li>Last updated: December 17 2021</li>
+    </ul>
+</div>
+
+<div class="page-wrapper">
+    <div class="dark-box"></div>
+    <div class="content">
+        <h1 id="introduction">Introduction</h1>
+<p>This documentation aims to provide all the information you need to work with our API.</p>
+<aside>As you scroll, you'll see code examples for working with the API in different programming languages in the dark area to the right (or as part of the content on mobile).
+You can switch the language used with the tabs at the top right (or from the nav menu at the top left on mobile).</aside>
+<blockquote>
+<p>Base URL</p>
+</blockquote>
+<pre><code class="language-yaml">http://shawarma-jungle.test</code></pre>
+
+        <h1 id="authenticating-requests">Authenticating requests</h1>
+<p>Authenticate requests to this API's endpoints by sending an <strong><code>Authorization</code></strong> header with the value <strong><code>"Bearer {TOKEN}"</code></strong>.</p>
+<p>All authenticated endpoints are marked with a <code>requires authentication</code> badge in the documentation below.</p>
+<p>You can retrieve a token from the json response of a successful login request.</p>
+
+        <h1 id="account-management">Account Management</h1>
+
+    
+
+            <h2 id="account-management-POSTapi-password-email">Send user password reset link</h2>
+
+<p>
+</p>
+
+
+
+<span id="example-requests-POSTapi-password-email">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request POST \
+    "http://shawarma-jungle.test/api/password/email" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json"</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://shawarma-jungle.test/api/password/email"
+);
+
+const headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "POST",
+    headers,
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-POSTapi-password-email">
+</span>
+<span id="execution-results-POSTapi-password-email" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-POSTapi-password-email"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-POSTapi-password-email"></code></pre>
+</span>
+<span id="execution-error-POSTapi-password-email" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-POSTapi-password-email"></code></pre>
+</span>
+<form id="form-POSTapi-password-email" data-method="POST"
+      data-path="api/password/email"
+      data-authed="0"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}'
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('POSTapi-password-email', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+            </h3>
+            <p>
+            <small class="badge badge-black">POST</small>
+            <b><code>api/password/email</code></b>
+        </p>
+                    </form>
+
+            <h2 id="account-management-POSTapi-account-delete">Delete User Account</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+
+
+<span id="example-requests-POSTapi-account-delete">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request POST \
+    "http://shawarma-jungle.test/api/account/delete" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json"</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://shawarma-jungle.test/api/account/delete"
+);
+
+const headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "POST",
+    headers,
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-POSTapi-account-delete">
+</span>
+<span id="execution-results-POSTapi-account-delete" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-POSTapi-account-delete"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-POSTapi-account-delete"></code></pre>
+</span>
+<span id="execution-error-POSTapi-account-delete" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-POSTapi-account-delete"></code></pre>
+</span>
+<form id="form-POSTapi-account-delete" data-method="POST"
+      data-path="api/account/delete"
+      data-authed="1"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}'
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('POSTapi-account-delete', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+            </h3>
+            <p>
+            <small class="badge badge-black">POST</small>
+            <b><code>api/account/delete</code></b>
+        </p>
+                <p>
+            <label id="auth-POSTapi-account-delete" hidden>Authorization header:
+                <b><code>Bearer </code></b><input type="text"
+                                                                name="Authorization"
+                                                                data-prefix="Bearer "
+                                                                data-endpoint="POSTapi-account-delete"
+                                                                data-component="header"></label>
+        </p>
+                </form>
+
+            <h2 id="account-management-POSTapi-vendor-password-email">Send vendor password reset link</h2>
+
+<p>
+</p>
+
+
+
+<span id="example-requests-POSTapi-vendor-password-email">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request POST \
+    "http://shawarma-jungle.test/api/vendor/password/email" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json"</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://shawarma-jungle.test/api/vendor/password/email"
+);
+
+const headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "POST",
+    headers,
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-POSTapi-vendor-password-email">
+</span>
+<span id="execution-results-POSTapi-vendor-password-email" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-POSTapi-vendor-password-email"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-POSTapi-vendor-password-email"></code></pre>
+</span>
+<span id="execution-error-POSTapi-vendor-password-email" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-POSTapi-vendor-password-email"></code></pre>
+</span>
+<form id="form-POSTapi-vendor-password-email" data-method="POST"
+      data-path="api/vendor/password/email"
+      data-authed="0"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}'
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('POSTapi-vendor-password-email', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+            </h3>
+            <p>
+            <small class="badge badge-black">POST</small>
+            <b><code>api/vendor/password/email</code></b>
+        </p>
+                    </form>
+
+            <h2 id="account-management-POSTapi-vendor-account-delete">Delete Vendor Account</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+
+
+<span id="example-requests-POSTapi-vendor-account-delete">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request POST \
+    "http://shawarma-jungle.test/api/vendor/account/delete" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json"</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://shawarma-jungle.test/api/vendor/account/delete"
+);
+
+const headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "POST",
+    headers,
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-POSTapi-vendor-account-delete">
+</span>
+<span id="execution-results-POSTapi-vendor-account-delete" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-POSTapi-vendor-account-delete"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-POSTapi-vendor-account-delete"></code></pre>
+</span>
+<span id="execution-error-POSTapi-vendor-account-delete" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-POSTapi-vendor-account-delete"></code></pre>
+</span>
+<form id="form-POSTapi-vendor-account-delete" data-method="POST"
+      data-path="api/vendor/account/delete"
+      data-authed="1"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}'
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('POSTapi-vendor-account-delete', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+            </h3>
+            <p>
+            <small class="badge badge-black">POST</small>
+            <b><code>api/vendor/account/delete</code></b>
+        </p>
+                <p>
+            <label id="auth-POSTapi-vendor-account-delete" hidden>Authorization header:
+                <b><code>Bearer </code></b><input type="text"
+                                                                name="Authorization"
+                                                                data-prefix="Bearer "
+                                                                data-endpoint="POSTapi-vendor-account-delete"
+                                                                data-component="header"></label>
+        </p>
+                </form>
+
+            <h2 id="account-management-POSTapi-register-user">User Registration</h2>
+
+<p>
+</p>
+
+
+
+<span id="example-requests-POSTapi-register-user">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request POST \
+    "http://shawarma-jungle.test/api/register/user" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json"</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://shawarma-jungle.test/api/register/user"
+);
+
+const headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "POST",
+    headers,
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-POSTapi-register-user">
+</span>
+<span id="execution-results-POSTapi-register-user" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-POSTapi-register-user"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-POSTapi-register-user"></code></pre>
+</span>
+<span id="execution-error-POSTapi-register-user" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-POSTapi-register-user"></code></pre>
+</span>
+<form id="form-POSTapi-register-user" data-method="POST"
+      data-path="api/register/user"
+      data-authed="0"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}'
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('POSTapi-register-user', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+            </h3>
+            <p>
+            <small class="badge badge-black">POST</small>
+            <b><code>api/register/user</code></b>
+        </p>
+                    </form>
+
+            <h2 id="account-management-POSTapi-verification-verify--user-">Verify user email</h2>
+
+<p>
+</p>
+
+<p>Linked user to verify users email after registration</p>
+
+<span id="example-requests-POSTapi-verification-verify--user-">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request POST \
+    "http://shawarma-jungle.test/api/verification/verify/19" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json"</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://shawarma-jungle.test/api/verification/verify/19"
+);
+
+const headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "POST",
+    headers,
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-POSTapi-verification-verify--user-">
+</span>
+<span id="execution-results-POSTapi-verification-verify--user-" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-POSTapi-verification-verify--user-"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-POSTapi-verification-verify--user-"></code></pre>
+</span>
+<span id="execution-error-POSTapi-verification-verify--user-" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-POSTapi-verification-verify--user-"></code></pre>
+</span>
+<form id="form-POSTapi-verification-verify--user-" data-method="POST"
+      data-path="api/verification/verify/{user}"
+      data-authed="0"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}'
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('POSTapi-verification-verify--user-', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+            </h3>
+            <p>
+            <small class="badge badge-black">POST</small>
+            <b><code>api/verification/verify/{user}</code></b>
+        </p>
+                    <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
+                    <p>
+                <b><code>user</code></b>&nbsp;&nbsp;<small>integer</small>  &nbsp;
+                <input type="number"
+               name="user"
+               data-endpoint="POSTapi-verification-verify--user-"
+               value="19"
+               data-component="url" hidden>
+    <br>
+
+            </p>
+                    </form>
+
+            <h2 id="account-management-POSTapi-verification-resend">Resend user email verification link</h2>
+
+<p>
+</p>
+
+
+
+<span id="example-requests-POSTapi-verification-resend">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request POST \
+    "http://shawarma-jungle.test/api/verification/resend" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json"</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://shawarma-jungle.test/api/verification/resend"
+);
+
+const headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "POST",
+    headers,
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-POSTapi-verification-resend">
+</span>
+<span id="execution-results-POSTapi-verification-resend" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-POSTapi-verification-resend"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-POSTapi-verification-resend"></code></pre>
+</span>
+<span id="execution-error-POSTapi-verification-resend" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-POSTapi-verification-resend"></code></pre>
+</span>
+<form id="form-POSTapi-verification-resend" data-method="POST"
+      data-path="api/verification/resend"
+      data-authed="0"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}'
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('POSTapi-verification-resend', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+            </h3>
+            <p>
+            <small class="badge badge-black">POST</small>
+            <b><code>api/verification/resend</code></b>
+        </p>
+                    </form>
+
+            <h2 id="account-management-POSTapi-login">User Login</h2>
+
+<p>
+</p>
+
+
+
+<span id="example-requests-POSTapi-login">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request POST \
+    "http://shawarma-jungle.test/api/login" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json"</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://shawarma-jungle.test/api/login"
+);
+
+const headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "POST",
+    headers,
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-POSTapi-login">
+</span>
+<span id="execution-results-POSTapi-login" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-POSTapi-login"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-POSTapi-login"></code></pre>
+</span>
+<span id="execution-error-POSTapi-login" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-POSTapi-login"></code></pre>
+</span>
+<form id="form-POSTapi-login" data-method="POST"
+      data-path="api/login"
+      data-authed="0"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}'
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('POSTapi-login', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+            </h3>
+            <p>
+            <small class="badge badge-black">POST</small>
+            <b><code>api/login</code></b>
+        </p>
+                    </form>
+
+            <h2 id="account-management-POSTapi-password-reset">Reset user&#039;s password.</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+
+
+<span id="example-requests-POSTapi-password-reset">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request POST \
+    "http://shawarma-jungle.test/api/password/reset" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json"</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://shawarma-jungle.test/api/password/reset"
+);
+
+const headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "POST",
+    headers,
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-POSTapi-password-reset">
+</span>
+<span id="execution-results-POSTapi-password-reset" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-POSTapi-password-reset"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-POSTapi-password-reset"></code></pre>
+</span>
+<span id="execution-error-POSTapi-password-reset" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-POSTapi-password-reset"></code></pre>
+</span>
+<form id="form-POSTapi-password-reset" data-method="POST"
+      data-path="api/password/reset"
+      data-authed="1"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}'
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('POSTapi-password-reset', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+            </h3>
+            <p>
+            <small class="badge badge-black">POST</small>
+            <b><code>api/password/reset</code></b>
+        </p>
+                <p>
+            <label id="auth-POSTapi-password-reset" hidden>Authorization header:
+                <b><code>Bearer </code></b><input type="text"
+                                                                name="Authorization"
+                                                                data-prefix="Bearer "
+                                                                data-endpoint="POSTapi-password-reset"
+                                                                data-component="header"></label>
+        </p>
+                </form>
+
+            <h2 id="account-management-POSTapi-vendor-register">Vendor Registration</h2>
+
+<p>
+</p>
+
+
+
+<span id="example-requests-POSTapi-vendor-register">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request POST \
+    "http://shawarma-jungle.test/api/vendor/register" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json" \
+    --data "{
+    \"business_name\": \"Tasty Shawarma\",
+    \"manager_full_name\": \"John Doe\",
+    \"manager_phone\": \"08123456789\",
+    \"bank_name\": \"Doe\",
+    \"bank_account_name\": \"Tasty Shawarma LTD\",
+    \"bank_account_number\": \"Doe\",
+    \"address\": \"Doe\",
+    \"location\": {
+        \"latitude\": 4.232423234,
+        \"longitude\": 5.423242343
+    },
+    \"password\": \"eligendi\",
+    \"password_confirmation\": \"nemo\"
+}"
+</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://shawarma-jungle.test/api/vendor/register"
+);
+
+const headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+let body = {
+    "business_name": "Tasty Shawarma",
+    "manager_full_name": "John Doe",
+    "manager_phone": "08123456789",
+    "bank_name": "Doe",
+    "bank_account_name": "Tasty Shawarma LTD",
+    "bank_account_number": "Doe",
+    "address": "Doe",
+    "location": {
+        "latitude": 4.232423234,
+        "longitude": 5.423242343
+    },
+    "password": "eligendi",
+    "password_confirmation": "nemo"
+};
+
+fetch(url, {
+    method: "POST",
+    headers,
+    body: JSON.stringify(body),
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-POSTapi-vendor-register">
+</span>
+<span id="execution-results-POSTapi-vendor-register" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-POSTapi-vendor-register"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-POSTapi-vendor-register"></code></pre>
+</span>
+<span id="execution-error-POSTapi-vendor-register" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-POSTapi-vendor-register"></code></pre>
+</span>
+<form id="form-POSTapi-vendor-register" data-method="POST"
+      data-path="api/vendor/register"
+      data-authed="0"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}'
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('POSTapi-vendor-register', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+            </h3>
+            <p>
+            <small class="badge badge-black">POST</small>
+            <b><code>api/vendor/register</code></b>
+        </p>
+                            <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
+        <p>
+            <b><code>business_name</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+                <input type="text"
+               name="business_name"
+               data-endpoint="POSTapi-vendor-register"
+               value="Tasty Shawarma"
+               data-component="body" hidden>
+    <br>
+<p>Name of the business/vendor.</p>
+        </p>
+                <p>
+            <b><code>manager_full_name</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+                <input type="text"
+               name="manager_full_name"
+               data-endpoint="POSTapi-vendor-register"
+               value="John Doe"
+               data-component="body" hidden>
+    <br>
+<p>first and last name of the manager.</p>
+        </p>
+                <p>
+            <b><code>manager_phone</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+                <input type="text"
+               name="manager_phone"
+               data-endpoint="POSTapi-vendor-register"
+               value="08123456789"
+               data-component="body" hidden>
+    <br>
+<p>manager/vendor's phone number.</p>
+        </p>
+                <p>
+            <b><code>bank_name</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+                <input type="text"
+               name="bank_name"
+               data-endpoint="POSTapi-vendor-register"
+               value="Doe"
+               data-component="body" hidden>
+    <br>
+<p>Name of bankused by vendor.</p>
+        </p>
+                <p>
+            <b><code>bank_account_name</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+                <input type="text"
+               name="bank_account_name"
+               data-endpoint="POSTapi-vendor-register"
+               value="Tasty Shawarma LTD"
+               data-component="body" hidden>
+    <br>
+<p>Vendor's bank account name.</p>
+        </p>
+                <p>
+            <b><code>bank_account_number</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+                <input type="text"
+               name="bank_account_number"
+               data-endpoint="POSTapi-vendor-register"
+               value="Doe"
+               data-component="body" hidden>
+    <br>
+<p>Vendor's bank account number.</p>
+        </p>
+                <p>
+            <b><code>address</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+                <input type="text"
+               name="address"
+               data-endpoint="POSTapi-vendor-register"
+               value="Doe"
+               data-component="body" hidden>
+    <br>
+<p>Vendor's Formatted address from google maps.</p>
+        </p>
+                <p>
+            <b><code>location</code></b>&nbsp;&nbsp;<small>object</small>  &nbsp;
+                <input type="text"
+               name="location"
+               data-endpoint="POSTapi-vendor-register"
+               value=""
+               data-component="body" hidden>
+    <br>
+<p>the latitude and longitude from the google maps api</p>
+        </p>
+                <p>
+            <b><code>password</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+                <input type="text"
+               name="password"
+               data-endpoint="POSTapi-vendor-register"
+               value="eligendi"
+               data-component="body" hidden>
+    <br>
+
+        </p>
+                <p>
+            <b><code>password_confirmation</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+                <input type="text"
+               name="password_confirmation"
+               data-endpoint="POSTapi-vendor-register"
+               value="nemo"
+               data-component="body" hidden>
+    <br>
+
+        </p>
+        </form>
+
+            <h2 id="account-management-POSTapi-vendor-verification-verify--vendor-">Verify vendor email</h2>
+
+<p>
+</p>
+
+
+
+<span id="example-requests-POSTapi-vendor-verification-verify--vendor-">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request POST \
+    "http://shawarma-jungle.test/api/vendor/verification/verify/9" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json"</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://shawarma-jungle.test/api/vendor/verification/verify/9"
+);
+
+const headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "POST",
+    headers,
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-POSTapi-vendor-verification-verify--vendor-">
+</span>
+<span id="execution-results-POSTapi-vendor-verification-verify--vendor-" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-POSTapi-vendor-verification-verify--vendor-"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-POSTapi-vendor-verification-verify--vendor-"></code></pre>
+</span>
+<span id="execution-error-POSTapi-vendor-verification-verify--vendor-" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-POSTapi-vendor-verification-verify--vendor-"></code></pre>
+</span>
+<form id="form-POSTapi-vendor-verification-verify--vendor-" data-method="POST"
+      data-path="api/vendor/verification/verify/{vendor}"
+      data-authed="0"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}'
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('POSTapi-vendor-verification-verify--vendor-', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+            </h3>
+            <p>
+            <small class="badge badge-black">POST</small>
+            <b><code>api/vendor/verification/verify/{vendor}</code></b>
+        </p>
+                    <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
+                    <p>
+                <b><code>vendor</code></b>&nbsp;&nbsp;<small>integer</small>  &nbsp;
+                <input type="number"
+               name="vendor"
+               data-endpoint="POSTapi-vendor-verification-verify--vendor-"
+               value="9"
+               data-component="url" hidden>
+    <br>
+
+            </p>
+                    </form>
+
+            <h2 id="account-management-POSTapi-vendor-verification-resend">Resend vendor email verification link</h2>
+
+<p>
+</p>
+
+
+
+<span id="example-requests-POSTapi-vendor-verification-resend">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request POST \
+    "http://shawarma-jungle.test/api/vendor/verification/resend" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json"</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://shawarma-jungle.test/api/vendor/verification/resend"
+);
+
+const headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "POST",
+    headers,
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-POSTapi-vendor-verification-resend">
+</span>
+<span id="execution-results-POSTapi-vendor-verification-resend" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-POSTapi-vendor-verification-resend"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-POSTapi-vendor-verification-resend"></code></pre>
+</span>
+<span id="execution-error-POSTapi-vendor-verification-resend" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-POSTapi-vendor-verification-resend"></code></pre>
+</span>
+<form id="form-POSTapi-vendor-verification-resend" data-method="POST"
+      data-path="api/vendor/verification/resend"
+      data-authed="0"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}'
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('POSTapi-vendor-verification-resend', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+            </h3>
+            <p>
+            <small class="badge badge-black">POST</small>
+            <b><code>api/vendor/verification/resend</code></b>
+        </p>
+                    </form>
+
+            <h2 id="account-management-POSTapi-vendor-login">Vendor Login</h2>
+
+<p>
+</p>
+
+
+
+<span id="example-requests-POSTapi-vendor-login">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request POST \
+    "http://shawarma-jungle.test/api/vendor/login" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json"</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://shawarma-jungle.test/api/vendor/login"
+);
+
+const headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "POST",
+    headers,
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-POSTapi-vendor-login">
+</span>
+<span id="execution-results-POSTapi-vendor-login" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-POSTapi-vendor-login"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-POSTapi-vendor-login"></code></pre>
+</span>
+<span id="execution-error-POSTapi-vendor-login" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-POSTapi-vendor-login"></code></pre>
+</span>
+<form id="form-POSTapi-vendor-login" data-method="POST"
+      data-path="api/vendor/login"
+      data-authed="0"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}'
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('POSTapi-vendor-login', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+            </h3>
+            <p>
+            <small class="badge badge-black">POST</small>
+            <b><code>api/vendor/login</code></b>
+        </p>
+                    </form>
+
+            <h2 id="account-management-POSTapi-vendor-password-reset">Reset vendor&#039;s password.</h2>
+
+<p>
+</p>
+
+
+
+<span id="example-requests-POSTapi-vendor-password-reset">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request POST \
+    "http://shawarma-jungle.test/api/vendor/password/reset" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json"</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://shawarma-jungle.test/api/vendor/password/reset"
+);
+
+const headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "POST",
+    headers,
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-POSTapi-vendor-password-reset">
+</span>
+<span id="execution-results-POSTapi-vendor-password-reset" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-POSTapi-vendor-password-reset"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-POSTapi-vendor-password-reset"></code></pre>
+</span>
+<span id="execution-error-POSTapi-vendor-password-reset" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-POSTapi-vendor-password-reset"></code></pre>
+</span>
+<form id="form-POSTapi-vendor-password-reset" data-method="POST"
+      data-path="api/vendor/password/reset"
+      data-authed="0"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}'
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('POSTapi-vendor-password-reset', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+            </h3>
+            <p>
+            <small class="badge badge-black">POST</small>
+            <b><code>api/vendor/password/reset</code></b>
+        </p>
+                    </form>
+
+            <h2 id="account-management-POSTapi-logout">Logout User</h2>
+
+<p>
+</p>
+
+
+
+<span id="example-requests-POSTapi-logout">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request POST \
+    "http://shawarma-jungle.test/api/logout" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json"</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://shawarma-jungle.test/api/logout"
+);
+
+const headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "POST",
+    headers,
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-POSTapi-logout">
+</span>
+<span id="execution-results-POSTapi-logout" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-POSTapi-logout"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-POSTapi-logout"></code></pre>
+</span>
+<span id="execution-error-POSTapi-logout" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-POSTapi-logout"></code></pre>
+</span>
+<form id="form-POSTapi-logout" data-method="POST"
+      data-path="api/logout"
+      data-authed="0"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}'
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('POSTapi-logout', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+            </h3>
+            <p>
+            <small class="badge badge-black">POST</small>
+            <b><code>api/logout</code></b>
+        </p>
+                    </form>
+
+            <h2 id="account-management-POSTapi-vendor-logout">Logout Vendor</h2>
+
+<p>
+</p>
+
+
+
+<span id="example-requests-POSTapi-vendor-logout">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request POST \
+    "http://shawarma-jungle.test/api/vendor/logout" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json"</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://shawarma-jungle.test/api/vendor/logout"
+);
+
+const headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "POST",
+    headers,
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-POSTapi-vendor-logout">
+</span>
+<span id="execution-results-POSTapi-vendor-logout" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-POSTapi-vendor-logout"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-POSTapi-vendor-logout"></code></pre>
+</span>
+<span id="execution-error-POSTapi-vendor-logout" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-POSTapi-vendor-logout"></code></pre>
+</span>
+<form id="form-POSTapi-vendor-logout" data-method="POST"
+      data-path="api/vendor/logout"
+      data-authed="0"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}'
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('POSTapi-vendor-logout', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+            </h3>
+            <p>
+            <small class="badge badge-black">POST</small>
+            <b><code>api/vendor/logout</code></b>
+        </p>
+                    </form>
+
+        <h1 id="order-management">Order Management</h1>
+
+    
+
+            <h2 id="order-management-POSTapi-orders-user">Place order</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+<p>This endpoint is sent when a user send a request to place an order</p>
+
+<span id="example-requests-POSTapi-orders-user">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request POST \
+    "http://shawarma-jungle.test/api/orders/user" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json" \
+    --data "{
+    \"vendor_id\": 1,
+    \"amount\": 1200,
+    \"order_products\": null,
+    \"is_delivery\": null
+}"
+</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://shawarma-jungle.test/api/orders/user"
+);
+
+const headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+let body = {
+    "vendor_id": 1,
+    "amount": 1200,
+    "order_products": null,
+    "is_delivery": null
+};
+
+fetch(url, {
+    method: "POST",
+    headers,
+    body: JSON.stringify(body),
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-POSTapi-orders-user">
+            <blockquote>
+            <p>Example response (201 Created):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json">{
+    &quot;success&quot;: true,
+    &quot;message&quot;: &quot;Order created&quot;,
+    &quot;data&quot;: {
+        &quot;id&quot;: 3,
+        &quot;amount&quot;: &quot;3500&quot;,
+        &quot;payment_type&quot;: &quot;card&quot;,
+        &quot;shipping_method&quot;: null,
+        &quot;order_items&quot;: [
+            {
+                &quot;product_id&quot;: 1,
+                &quot;name&quot;: &quot;Obi sharwama&quot;,
+                &quot;quantity&quot;: 2,
+                &quot;price&quot;: 1000
+            },
+            {
+                &quot;product_id&quot;: 1,
+                &quot;name&quot;: &quot;water&quot;,
+                &quot;quantity&quot;: 2,
+                &quot;price&quot;: 100
+            }
+        ],
+        &quot;create_dates&quot;: {
+            &quot;creadted_at_human&quot;: &quot;1 second ago&quot;,
+            &quot;creadted_at&quot;: &quot;2021-12-16T23:32:58.000000Z&quot;
+        }
+    }
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-POSTapi-orders-user" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-POSTapi-orders-user"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-POSTapi-orders-user"></code></pre>
+</span>
+<span id="execution-error-POSTapi-orders-user" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-POSTapi-orders-user"></code></pre>
+</span>
+<form id="form-POSTapi-orders-user" data-method="POST"
+      data-path="api/orders/user"
+      data-authed="1"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}'
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('POSTapi-orders-user', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+            </h3>
+            <p>
+            <small class="badge badge-black">POST</small>
+            <b><code>api/orders/user</code></b>
+        </p>
+                <p>
+            <label id="auth-POSTapi-orders-user" hidden>Authorization header:
+                <b><code>Bearer </code></b><input type="text"
+                                                                name="Authorization"
+                                                                data-prefix="Bearer "
+                                                                data-endpoint="POSTapi-orders-user"
+                                                                data-component="header"></label>
+        </p>
+                        <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
+        <p>
+            <b><code>vendor_id</code></b>&nbsp;&nbsp;<small>integer</small>  &nbsp;
+                <input type="number"
+               name="vendor_id"
+               data-endpoint="POSTapi-orders-user"
+               value="1"
+               data-component="body" hidden>
+    <br>
+<p>Id number of the vendor theuser is ordering from.</p>
+        </p>
+                <p>
+            <b><code>amount</code></b>&nbsp;&nbsp;<small>integer</small>  &nbsp;
+                <input type="number"
+               name="amount"
+               data-endpoint="POSTapi-orders-user"
+               value="1200"
+               data-component="body" hidden>
+    <br>
+<p>Total amount of the order(including the delivery fee)</p>
+        </p>
+                <p>
+            <b><code>order_products</code></b>&nbsp;&nbsp;<small>array of objects</small>  &nbsp;
+                <input type="text"
+               name="order_products"
+               data-endpoint="POSTapi-orders-user"
+               value=""
+               data-component="body" hidden>
+    <br>
+<p>Array of maps contatining each of the cart items</p>
+        </p>
+                <p>
+            <b><code>is_delivery</code></b>&nbsp;&nbsp;<small>boolean</small>  &nbsp;
+                <label data-endpoint="POSTapi-orders-user" hidden>
+            <input type="radio" name="is_delivery"
+                   value="true"
+                   data-endpoint="POSTapi-orders-user"
+                   data-component="body"
+            >
+            <code>true</code>
+        </label>
+        <label data-endpoint="POSTapi-orders-user" hidden>
+            <input type="radio" name="is_delivery"
+                   value="false"
+                   data-endpoint="POSTapi-orders-user"
+                   data-component="body"
+            >
+            <code>false</code>
+        </label>
+    <br>
+
+        </p>
+                <p>
+            <b><code>payment_type</code></b>&nbsp;&nbsp;<small>string</small>     <i>optional</i> &nbsp;
+                <input type="text"
+               name="payment_type"
+               data-endpoint="POSTapi-orders-user"
+               value=""
+               data-component="body" hidden>
+    <br>
+<p>this should be either card or cash, this field is required if the is_deliver field is TRUE</p>
+        </p>
+        </form>
+
+            <h2 id="order-management-GETapi-orders-user">Get user orders</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+<p>Get list of the currently authenticated user's orders</p>
+
+<span id="example-requests-GETapi-orders-user">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request GET \
+    --get "http://shawarma-jungle.test/api/orders/user" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json"</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://shawarma-jungle.test/api/orders/user"
+);
+
+const headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "GET",
+    headers,
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-GETapi-orders-user">
+            <blockquote>
+            <p>Example response (200):</p>
+        </blockquote>
+                <details class="annotation">
+            <summary>
+                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
+            </summary>
+            <pre><code class="language-http">cache-control: no-cache, private
+content-type: application/json
+access-control-allow-origin: *
+ </code></pre>
+        </details>         <pre>
+
+<code class="language-json">{
+    &quot;success&quot;: true,
+    &quot;message&quot;: &quot;Fetched user orders&quot;,
+    &quot;data&quot;: [
+        {
+            &quot;id&quot;: 1,
+            &quot;amount&quot;: 3500,
+            &quot;payment_type&quot;: &quot;card&quot;,
+            &quot;shipping_method&quot;: null,
+            &quot;order_items&quot;: [
+                {
+                    &quot;name&quot;: &quot;Obi sharwama&quot;,
+                    &quot;price&quot;: 1000,
+                    &quot;quantity&quot;: 2,
+                    &quot;product_id&quot;: 1
+                },
+                {
+                    &quot;name&quot;: &quot;Coke&quot;,
+                    &quot;price&quot;: 300,
+                    &quot;quantity&quot;: 1,
+                    &quot;product_id&quot;: 1
+                },
+                {
+                    &quot;name&quot;: &quot;water&quot;,
+                    &quot;price&quot;: 100,
+                    &quot;quantity&quot;: 2,
+                    &quot;product_id&quot;: 1
+                }
+            ],
+            &quot;create_dates&quot;: {
+                &quot;creadted_at_human&quot;: &quot;1 week ago&quot;,
+                &quot;creadted_at&quot;: &quot;2021-12-04T19:08:54.000000Z&quot;
+            }
+        },
+        {
+            &quot;id&quot;: 2,
+            &quot;amount&quot;: 3500,
+            &quot;payment_type&quot;: &quot;card&quot;,
+            &quot;shipping_method&quot;: null,
+            &quot;order_items&quot;: [
+                {
+                    &quot;name&quot;: &quot;Obi sharwama&quot;,
+                    &quot;price&quot;: 1000,
+                    &quot;quantity&quot;: 2,
+                    &quot;product_id&quot;: 1
+                },
+                {
+                    &quot;name&quot;: &quot;water&quot;,
+                    &quot;price&quot;: 100,
+                    &quot;quantity&quot;: 2,
+                    &quot;product_id&quot;: 1
+                }
+            ],
+            &quot;create_dates&quot;: {
+                &quot;creadted_at_human&quot;: &quot;1 week ago&quot;,
+                &quot;creadted_at&quot;: &quot;2021-12-05T16:15:41.000000Z&quot;
+            }
+        },
+        {
+            &quot;id&quot;: 3,
+            &quot;amount&quot;: 3500,
+            &quot;payment_type&quot;: &quot;card&quot;,
+            &quot;shipping_method&quot;: null,
+            &quot;order_items&quot;: [
+                {
+                    &quot;name&quot;: &quot;Obi sharwama&quot;,
+                    &quot;price&quot;: 1000,
+                    &quot;quantity&quot;: 2,
+                    &quot;product_id&quot;: 1
+                },
+                {
+                    &quot;name&quot;: &quot;water&quot;,
+                    &quot;price&quot;: 100,
+                    &quot;quantity&quot;: 2,
+                    &quot;product_id&quot;: 1
+                }
+            ],
+            &quot;create_dates&quot;: {
+                &quot;creadted_at_human&quot;: &quot;5 minutes ago&quot;,
+                &quot;creadted_at&quot;: &quot;2021-12-16T23:32:58.000000Z&quot;
+            }
+        }
+    ]
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-GETapi-orders-user" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-GETapi-orders-user"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-GETapi-orders-user"></code></pre>
+</span>
+<span id="execution-error-GETapi-orders-user" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-GETapi-orders-user"></code></pre>
+</span>
+<form id="form-GETapi-orders-user" data-method="GET"
+      data-path="api/orders/user"
+      data-authed="1"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}'
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('GETapi-orders-user', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+            </h3>
+            <p>
+            <small class="badge badge-green">GET</small>
+            <b><code>api/orders/user</code></b>
+        </p>
+                <p>
+            <label id="auth-GETapi-orders-user" hidden>Authorization header:
+                <b><code>Bearer </code></b><input type="text"
+                                                                name="Authorization"
+                                                                data-prefix="Bearer "
+                                                                data-endpoint="GETapi-orders-user"
+                                                                data-component="header"></label>
+        </p>
+                </form>
+
+            <h2 id="order-management-GETapi-vendor-orders-vendor">Get vendor orders</h2>
+
+<p>
+</p>
+
+<p>Get list of the currently authenticated vendor's orders</p>
+
+<span id="example-requests-GETapi-vendor-orders-vendor">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request GET \
+    --get "http://shawarma-jungle.test/api/vendor/orders/vendor" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json"</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://shawarma-jungle.test/api/vendor/orders/vendor"
+);
+
+const headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "GET",
+    headers,
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-GETapi-vendor-orders-vendor">
+            <blockquote>
+            <p>Example response (200):</p>
+        </blockquote>
+                <details class="annotation">
+            <summary>
+                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
+            </summary>
+            <pre><code class="language-http">cache-control: no-cache, private
+content-type: application/json
+access-control-allow-origin: *
+ </code></pre>
+        </details>         <pre>
+
+<code class="language-json">{
+    &quot;success&quot;: true,
+    &quot;message&quot;: &quot;Fetched vendor orders&quot;,
+    &quot;data&quot;: [
+        {
+            &quot;id&quot;: 4,
+            &quot;amount&quot;: 3500,
+            &quot;payment_type&quot;: &quot;card&quot;,
+            &quot;shipping_method&quot;: null,
+            &quot;order_items&quot;: [
+                {
+                    &quot;name&quot;: &quot;Obi sharwama&quot;,
+                    &quot;price&quot;: 1000,
+                    &quot;quantity&quot;: 2,
+                    &quot;product_id&quot;: 1
+                },
+                {
+                    &quot;name&quot;: &quot;water&quot;,
+                    &quot;price&quot;: 100,
+                    &quot;quantity&quot;: 2,
+                    &quot;product_id&quot;: 1
+                }
+            ],
+            &quot;create_dates&quot;: {
+                &quot;creadted_at_human&quot;: &quot;20 seconds ago&quot;,
+                &quot;creadted_at&quot;: &quot;2021-12-16T23:45:56.000000Z&quot;
+            }
+        },
+        {
+            &quot;id&quot;: 5,
+            &quot;amount&quot;: 3500,
+            &quot;payment_type&quot;: &quot;card&quot;,
+            &quot;shipping_method&quot;: null,
+            &quot;order_items&quot;: [
+                {
+                    &quot;name&quot;: &quot;Obi sharwama&quot;,
+                    &quot;price&quot;: 1000,
+                    &quot;quantity&quot;: 2,
+                    &quot;product_id&quot;: 1
+                },
+                {
+                    &quot;name&quot;: &quot;water&quot;,
+                    &quot;price&quot;: 100,
+                    &quot;quantity&quot;: 2,
+                    &quot;product_id&quot;: 1
+                }
+            ],
+            &quot;create_dates&quot;: {
+                &quot;creadted_at_human&quot;: &quot;13 seconds ago&quot;,
+                &quot;creadted_at&quot;: &quot;2021-12-16T23:46:03.000000Z&quot;
+            }
+        }
+    ]
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-GETapi-vendor-orders-vendor" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-GETapi-vendor-orders-vendor"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-GETapi-vendor-orders-vendor"></code></pre>
+</span>
+<span id="execution-error-GETapi-vendor-orders-vendor" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-GETapi-vendor-orders-vendor"></code></pre>
+</span>
+<form id="form-GETapi-vendor-orders-vendor" data-method="GET"
+      data-path="api/vendor/orders/vendor"
+      data-authed="0"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}'
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('GETapi-vendor-orders-vendor', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+            </h3>
+            <p>
+            <small class="badge badge-green">GET</small>
+            <b><code>api/vendor/orders/vendor</code></b>
+        </p>
+                    </form>
+
+        <h1 id="product-management">Product Management</h1>
+
+    
+
+            <h2 id="product-management-GETapi-vendor-products">Get vendors products</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+<p>Returns all products belonging to the authenticated vendor</p>
+
+<span id="example-requests-GETapi-vendor-products">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request GET \
+    --get "http://shawarma-jungle.test/api/vendor/products" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json"</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://shawarma-jungle.test/api/vendor/products"
+);
+
+const headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "GET",
+    headers,
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-GETapi-vendor-products">
+            <blockquote>
+            <p>Example response (200):</p>
+        </blockquote>
+                <details class="annotation">
+            <summary>
+                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
+            </summary>
+            <pre><code class="language-http">cache-control: no-cache, private
+content-type: application/json
+access-control-allow-origin: *
+ </code></pre>
+        </details>         <pre>
+
+<code class="language-json">{
+  &quot;success&quot;: true,
+  &quot;message&quot;: &quot;Successful&quot;,
+  &quot;data&quot;: [
+      {
+          &quot;id&quot;: 4,
+          &quot;name&quot;: &quot;Beef sharwama&quot;,
+          &quot;slug&quot;: &quot;beef-sharwama&quot;,
+          &quot;price&quot;: 1500,
+          &quot;description&quot;: null,
+          &quot;images&quot;: {
+              &quot;thumbnail&quot;: &quot;http://shawarma-jungle.test/storage/uploads/products/thumbnail/1639207142_screenshot_(5).png&quot;,
+              &quot;original&quot;: &quot;http://shawarma-jungle.test/storage/uploads/products/original/1639207142_screenshot_(5).png&quot;,
+              &quot;large&quot;: &quot;http://shawarma-jungle.test/storage/uploads/products/large/1639207142_screenshot_(5).png&quot;
+          },
+          &quot;isActive&quot;: false,
+          &quot;create_dates&quot;: {
+              &quot;creadted_at_human&quot;: &quot;6 days ago&quot;,
+              &quot;creadted_at&quot;: &quot;2021-12-11T07:19:02.000000Z&quot;
+          },
+          &quot;update_dates&quot;: {
+              &quot;updated_at_human&quot;: &quot;6 days ago&quot;,
+              &quot;updated_at&quot;: &quot;2021-12-11T07:19:05.000000Z&quot;
+          }
+      }
+  ]
+}'
+</code>
+ </pre>
+    </span>
+<span id="execution-results-GETapi-vendor-products" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-GETapi-vendor-products"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-GETapi-vendor-products"></code></pre>
+</span>
+<span id="execution-error-GETapi-vendor-products" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-GETapi-vendor-products"></code></pre>
+</span>
+<form id="form-GETapi-vendor-products" data-method="GET"
+      data-path="api/vendor/products"
+      data-authed="1"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}'
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('GETapi-vendor-products', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+            </h3>
+            <p>
+            <small class="badge badge-green">GET</small>
+            <b><code>api/vendor/products</code></b>
+        </p>
+                <p>
+            <label id="auth-GETapi-vendor-products" hidden>Authorization header:
+                <b><code>Bearer </code></b><input type="text"
+                                                                name="Authorization"
+                                                                data-prefix="Bearer "
+                                                                data-endpoint="GETapi-vendor-products"
+                                                                data-component="header"></label>
+        </p>
+                </form>
+
+            <h2 id="product-management-GETapi-vendor-products--product-">Get a product</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+<p>Returns a single product of an authenticated vendor</p>
+
+<span id="example-requests-GETapi-vendor-products--product-">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request GET \
+    --get "http://shawarma-jungle.test/api/vendor/products/14" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json"</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://shawarma-jungle.test/api/vendor/products/14"
+);
+
+const headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "GET",
+    headers,
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-GETapi-vendor-products--product-">
+            <blockquote>
+            <p>Example response (200):</p>
+        </blockquote>
+                <details class="annotation">
+            <summary>
+                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
+            </summary>
+            <pre><code class="language-http">cache-control: no-cache, private
+content-type: application/json
+access-control-allow-origin: *
+ </code></pre>
+        </details>         <pre>
+
+<code class="language-json">{
+    &quot;success&quot;: true,
+    &quot;message&quot;: &quot;Successful&quot;,
+    &quot;data&quot;: {
+        &quot;id&quot;: 4,
+        &quot;name&quot;: &quot;Beef sharwama&quot;,
+        &quot;slug&quot;: &quot;beef-sharwama&quot;,
+        &quot;price&quot;: 1500,
+        &quot;images&quot;: {
+            &quot;thumbnail&quot;: &quot;http://shawarma-jungle.test/storage/uploads/products/thumbnail/1639207142_screenshot_(5).png&quot;,
+            &quot;original&quot;: &quot;http://shawarma-jungle.test/storage/uploads/products/original/1639207142_screenshot_(5).png&quot;,
+            &quot;large&quot;: &quot;http://shawarma-jungle.test/storage/uploads/products/large/1639207142_screenshot_(5).png&quot;
+        },
+        &quot;isActive&quot;: false,
+        &quot;create_dates&quot;: {
+            &quot;creadted_at_human&quot;: &quot;6 days ago&quot;,
+            &quot;creadted_at&quot;: &quot;2021-12-11T07:19:02.000000Z&quot;
+        },
+        &quot;update_dates&quot;: {
+            &quot;updated_at_human&quot;: &quot;6 days ago&quot;,
+            &quot;updated_at&quot;: &quot;2021-12-11T07:19:05.000000Z&quot;
+        }
+    }
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-GETapi-vendor-products--product-" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-GETapi-vendor-products--product-"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-GETapi-vendor-products--product-"></code></pre>
+</span>
+<span id="execution-error-GETapi-vendor-products--product-" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-GETapi-vendor-products--product-"></code></pre>
+</span>
+<form id="form-GETapi-vendor-products--product-" data-method="GET"
+      data-path="api/vendor/products/{product}"
+      data-authed="1"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}'
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('GETapi-vendor-products--product-', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+            </h3>
+            <p>
+            <small class="badge badge-green">GET</small>
+            <b><code>api/vendor/products/{product}</code></b>
+        </p>
+                <p>
+            <label id="auth-GETapi-vendor-products--product-" hidden>Authorization header:
+                <b><code>Bearer </code></b><input type="text"
+                                                                name="Authorization"
+                                                                data-prefix="Bearer "
+                                                                data-endpoint="GETapi-vendor-products--product-"
+                                                                data-component="header"></label>
+        </p>
+                <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
+                    <p>
+                <b><code>product</code></b>&nbsp;&nbsp;<small>integer</small>  &nbsp;
+                <input type="number"
+               name="product"
+               data-endpoint="GETapi-vendor-products--product-"
+               value="14"
+               data-component="url" hidden>
+    <br>
+
+            </p>
+                    </form>
+
+            <h2 id="product-management-POSTapi-vendor-products">Create product</h2>
+
+<p>
+</p>
+
+
+
+<span id="example-requests-POSTapi-vendor-products">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request POST \
+    "http://shawarma-jungle.test/api/vendor/products" \
+    --header "Content-Type: multipart/form-data" \
+    --header "Accept: application/json" \
+    --form "name=Chicken Sharwama." \
+    --form "price=" \
+    --form "image=@C:\Users\USER\AppData\Local\Temp\php9F1C.tmp" </code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://shawarma-jungle.test/api/vendor/products"
+);
+
+const headers = {
+    "Content-Type": "multipart/form-data",
+    "Accept": "application/json",
+};
+
+const body = new FormData();
+body.append('name', 'Chicken Sharwama.');
+body.append('price', '');
+body.append('image', document.querySelector('input[name="image"]').files[0]);
+
+fetch(url, {
+    method: "POST",
+    headers,
+    body,
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-POSTapi-vendor-products">
+            <blockquote>
+            <p>Example response (200):</p>
+        </blockquote>
+                <details class="annotation">
+            <summary>
+                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
+            </summary>
+            <pre><code class="language-http">cache-control: no-cache, private
+content-type: application/json
+access-control-allow-origin: *
+ </code></pre>
+        </details>         <pre>
+
+<code class="language-json">{
+    &quot;success&quot;: true,
+    &quot;message&quot;: &quot;Created product successfully&quot;,
+    &quot;data&quot;: {
+        &quot;id&quot;: 4,
+        &quot;name&quot;: &quot;Beef sharwama&quot;,
+        &quot;slug&quot;: &quot;beef-sharwama&quot;,
+        &quot;price&quot;: 1500,
+        &quot;description&quot;: null,
+        &quot;images&quot;: {
+            &quot;thumbnail&quot;: &quot;http://shawarma-jungle.test/storage/uploads/products/thumbnail/1639207142_screenshot_(5).png&quot;,
+            &quot;original&quot;: &quot;http://shawarma-jungle.test/storage/uploads/products/original/1639207142_screenshot_(5).png&quot;,
+            &quot;large&quot;: &quot;http://shawarma-jungle.test/storage/uploads/products/large/1639207142_screenshot_(5).png&quot;
+        },
+        &quot;isActive&quot;: false,
+        &quot;create_dates&quot;: {
+            &quot;creadted_at_human&quot;: &quot;6 days ago&quot;,
+            &quot;creadted_at&quot;: &quot;2021-12-11T07:19:02.000000Z&quot;
+        },
+        &quot;update_dates&quot;: {
+            &quot;updated_at_human&quot;: &quot;6 days ago&quot;,
+            &quot;updated_at&quot;: &quot;2021-12-11T07:19:05.000000Z&quot;
+        }
+    }
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-POSTapi-vendor-products" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-POSTapi-vendor-products"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-POSTapi-vendor-products"></code></pre>
+</span>
+<span id="execution-error-POSTapi-vendor-products" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-POSTapi-vendor-products"></code></pre>
+</span>
+<form id="form-POSTapi-vendor-products" data-method="POST"
+      data-path="api/vendor/products"
+      data-authed="0"
+      data-hasfiles="1"
+      data-isarraybody="0"
+      data-headers='{"Content-Type":"multipart\/form-data","Accept":"application\/json"}'
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('POSTapi-vendor-products', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+            </h3>
+            <p>
+            <small class="badge badge-black">POST</small>
+            <b><code>api/vendor/products</code></b>
+        </p>
+                            <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
+        <p>
+            <b><code>name</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+                <input type="text"
+               name="name"
+               data-endpoint="POSTapi-vendor-products"
+               value="Chicken Sharwama."
+               data-component="body" hidden>
+    <br>
+<p>The name of the product.</p>
+        </p>
+                <p>
+            <b><code>description</code></b>&nbsp;&nbsp;<small>string</small>     <i>optional</i> &nbsp;
+                <input type="text"
+               name="description"
+               data-endpoint="POSTapi-vendor-products"
+               value=""
+               data-component="body" hidden>
+    <br>
+<p>about the product</p>
+        </p>
+                <p>
+            <b><code>image</code></b>&nbsp;&nbsp;<small>file</small>  &nbsp;
+                <input type="file"
+               name="image"
+               data-endpoint="POSTapi-vendor-products"
+               value=""
+               data-component="body" hidden>
+    <br>
+<p>product image</p>
+        </p>
+                <p>
+            <b><code>price</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+                <input type="text"
+               name="price"
+               data-endpoint="POSTapi-vendor-products"
+               value=""
+               data-component="body" hidden>
+    <br>
+<p>price of the product</p>
+        </p>
+        </form>
+
+            <h2 id="product-management-POSTapi-vendor-products--product-">Update product</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+
+
+<span id="example-requests-POSTapi-vendor-products--product-">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request POST \
+    "http://shawarma-jungle.test/api/vendor/products/17?_method=PUT" \
+    --header "Content-Type: multipart/form-data" \
+    --header "Accept: application/json" \
+    --form "name=Chicken Sharwama." \
+    --form "price=" \
+    --form "image=@C:\Users\USER\AppData\Local\Temp\php9F2C.tmp" </code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://shawarma-jungle.test/api/vendor/products/17"
+);
+
+const params = {
+    "_method": "PUT",
+};
+Object.keys(params)
+    .forEach(key =&gt; url.searchParams.append(key, params[key]));
+
+const headers = {
+    "Content-Type": "multipart/form-data",
+    "Accept": "application/json",
+};
+
+const body = new FormData();
+body.append('name', 'Chicken Sharwama.');
+body.append('price', '');
+body.append('image', document.querySelector('input[name="image"]').files[0]);
+
+fetch(url, {
+    method: "POST",
+    headers,
+    body,
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-POSTapi-vendor-products--product-">
+            <blockquote>
+            <p>Example response (200):</p>
+        </blockquote>
+                <details class="annotation">
+            <summary>
+                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
+            </summary>
+            <pre><code class="language-http">cache-control: no-cache, private
+content-type: application/json
+access-control-allow-origin: *
+ </code></pre>
+        </details>         <pre>
+
+<code class="language-json">{
+    &quot;success&quot;: true,
+    &quot;message&quot;: &quot;Updated product successfully&quot;,
+    &quot;data&quot;: {
+        &quot;id&quot;: 4,
+        &quot;name&quot;: &quot;Beef sharwama&quot;,
+        &quot;slug&quot;: &quot;beef-sharwama&quot;,
+        &quot;price&quot;: 1500,
+        &quot;description&quot;: null,
+        &quot;images&quot;: {
+            &quot;thumbnail&quot;: &quot;http://shawarma-jungle.test/storage/uploads/products/thumbnail/1639207142_screenshot_(5).png&quot;,
+            &quot;original&quot;: &quot;http://shawarma-jungle.test/storage/uploads/products/original/1639207142_screenshot_(5).png&quot;,
+            &quot;large&quot;: &quot;http://shawarma-jungle.test/storage/uploads/products/large/1639207142_screenshot_(5).png&quot;
+        },
+        &quot;isActive&quot;: false,
+        &quot;create_dates&quot;: {
+            &quot;creadted_at_human&quot;: &quot;6 days ago&quot;,
+            &quot;creadted_at&quot;: &quot;2021-12-11T07:19:02.000000Z&quot;
+        },
+        &quot;update_dates&quot;: {
+            &quot;updated_at_human&quot;: &quot;6 days ago&quot;,
+            &quot;updated_at&quot;: &quot;2021-12-11T07:19:05.000000Z&quot;
+        }
+    }
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-POSTapi-vendor-products--product-" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-POSTapi-vendor-products--product-"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-POSTapi-vendor-products--product-"></code></pre>
+</span>
+<span id="execution-error-POSTapi-vendor-products--product-" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-POSTapi-vendor-products--product-"></code></pre>
+</span>
+<form id="form-POSTapi-vendor-products--product-" data-method="POST"
+      data-path="api/vendor/products/{product}"
+      data-authed="1"
+      data-hasfiles="1"
+      data-isarraybody="0"
+      data-headers='{"Content-Type":"multipart\/form-data","Accept":"application\/json"}'
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('POSTapi-vendor-products--product-', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+            </h3>
+            <p>
+            <small class="badge badge-black">POST</small>
+            <b><code>api/vendor/products/{product}</code></b>
+        </p>
+                <p>
+            <label id="auth-POSTapi-vendor-products--product-" hidden>Authorization header:
+                <b><code>Bearer </code></b><input type="text"
+                                                                name="Authorization"
+                                                                data-prefix="Bearer "
+                                                                data-endpoint="POSTapi-vendor-products--product-"
+                                                                data-component="header"></label>
+        </p>
+                <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
+                    <p>
+                <b><code>product</code></b>&nbsp;&nbsp;<small>integer</small>  &nbsp;
+                <input type="number"
+               name="product"
+               data-endpoint="POSTapi-vendor-products--product-"
+               value="17"
+               data-component="url" hidden>
+    <br>
+
+            </p>
+                        <h4 class="fancy-heading-panel"><b>Query Parameters</b></h4>
+                    <p>
+                <b><code>_method</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+                <input type="text"
+               name="_method"
+               data-endpoint="POSTapi-vendor-products--product-"
+               value="PUT"
+               data-component="query" hidden>
+    <br>
+<p>The http request method to be used here is PUT</p>
+            </p>
+                        <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
+        <p>
+            <b><code>name</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+                <input type="text"
+               name="name"
+               data-endpoint="POSTapi-vendor-products--product-"
+               value="Chicken Sharwama."
+               data-component="body" hidden>
+    <br>
+<p>The name of the product.</p>
+        </p>
+                <p>
+            <b><code>description</code></b>&nbsp;&nbsp;<small>string</small>     <i>optional</i> &nbsp;
+                <input type="text"
+               name="description"
+               data-endpoint="POSTapi-vendor-products--product-"
+               value=""
+               data-component="body" hidden>
+    <br>
+<p>about the product</p>
+        </p>
+                <p>
+            <b><code>image</code></b>&nbsp;&nbsp;<small>file</small>  &nbsp;
+                <input type="file"
+               name="image"
+               data-endpoint="POSTapi-vendor-products--product-"
+               value=""
+               data-component="body" hidden>
+    <br>
+<p>product image</p>
+        </p>
+                <p>
+            <b><code>price</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+                <input type="text"
+               name="price"
+               data-endpoint="POSTapi-vendor-products--product-"
+               value=""
+               data-component="body" hidden>
+    <br>
+<p>price of the product</p>
+        </p>
+        </form>
+
+            <h2 id="product-management-DELETEapi-vendor-products--product-">Delete product</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+
+
+<span id="example-requests-DELETEapi-vendor-products--product-">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request DELETE \
+    "http://shawarma-jungle.test/api/vendor/products/15" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json"</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://shawarma-jungle.test/api/vendor/products/15"
+);
+
+const headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "DELETE",
+    headers,
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-DELETEapi-vendor-products--product-">
+            <blockquote>
+            <p>Example response (204 No Content):</p>
+        </blockquote>
+                <details class="annotation">
+            <summary>
+                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
+            </summary>
+            <pre><code class="language-http">cache-control: no-cache, private
+content-type: application/json
+access-control-allow-origin: *
+ </code></pre>
+        </details>         <pre>
+
+<code class="language-json"></code>
+ </pre>
+    </span>
+<span id="execution-results-DELETEapi-vendor-products--product-" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-DELETEapi-vendor-products--product-"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-DELETEapi-vendor-products--product-"></code></pre>
+</span>
+<span id="execution-error-DELETEapi-vendor-products--product-" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-DELETEapi-vendor-products--product-"></code></pre>
+</span>
+<form id="form-DELETEapi-vendor-products--product-" data-method="DELETE"
+      data-path="api/vendor/products/{product}"
+      data-authed="1"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}'
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('DELETEapi-vendor-products--product-', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+            </h3>
+            <p>
+            <small class="badge badge-red">DELETE</small>
+            <b><code>api/vendor/products/{product}</code></b>
+        </p>
+                <p>
+            <label id="auth-DELETEapi-vendor-products--product-" hidden>Authorization header:
+                <b><code>Bearer </code></b><input type="text"
+                                                                name="Authorization"
+                                                                data-prefix="Bearer "
+                                                                data-endpoint="DELETEapi-vendor-products--product-"
+                                                                data-component="header"></label>
+        </p>
+                <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
+                    <p>
+                <b><code>product</code></b>&nbsp;&nbsp;<small>integer</small>  &nbsp;
+                <input type="number"
+               name="product"
+               data-endpoint="DELETEapi-vendor-products--product-"
+               value="15"
+               data-component="url" hidden>
+    <br>
+
+            </p>
+                    </form>
+
+        <h1 id="profile-management">Profile Management</h1>
+
+    
+
+            <h2 id="profile-management-PUTapi-settings-profile">Updating user profile</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+
+
+<span id="example-requests-PUTapi-settings-profile">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request PUT \
+    "http://shawarma-jungle.test/api/settings/profile" \
+    --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json" \
+    --data "{
+    \"first_name\": \"John.\",
+    \"last_name\": \"Doe\"
+}"
+</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://shawarma-jungle.test/api/settings/profile"
+);
+
+const headers = {
+    "Authorization": "Bearer {YOUR_AUTH_KEY}",
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+let body = {
+    "first_name": "John.",
+    "last_name": "Doe"
+};
+
+fetch(url, {
+    method: "PUT",
+    headers,
+    body: JSON.stringify(body),
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-PUTapi-settings-profile">
+            <blockquote>
+            <p>Example response (200):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json">{
+    &quot;success&quot;: true,
+    &quot;message&quot;: &quot;Updated&quot;,
+    &quot;data&quot;: {
+        &quot;id&quot;: 1,
+        &quot;first_name&quot;: &quot;John&quot;,
+        &quot;last_name&quot;: &quot;Doe&quot;,
+        &quot;fullname&quot;: &quot;John Doe&quot;,
+        &quot;email&quot;: &quot;gabe@gmail.com&quot;,
+        &quot;create_dates&quot;: {
+            &quot;creadted_at_human&quot;: &quot;1 week ago&quot;,
+            &quot;creadted_at&quot;: &quot;2021-12-03T09:55:40.000000Z&quot;
+        },
+        &quot;update_dates&quot;: {
+            &quot;updated_at_human&quot;: &quot;1 week ago&quot;,
+            &quot;updated_at&quot;: &quot;2021-12-03T23:08:27.000000Z&quot;
+        }
+    }
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-PUTapi-settings-profile" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-PUTapi-settings-profile"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-PUTapi-settings-profile"></code></pre>
+</span>
+<span id="execution-error-PUTapi-settings-profile" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-PUTapi-settings-profile"></code></pre>
+</span>
+<form id="form-PUTapi-settings-profile" data-method="PUT"
+      data-path="api/settings/profile"
+      data-authed="1"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      data-headers='{"Authorization":"Bearer {YOUR_AUTH_KEY}","Content-Type":"application\/json","Accept":"application\/json"}'
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('PUTapi-settings-profile', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+            </h3>
+            <p>
+            <small class="badge badge-darkblue">PUT</small>
+            <b><code>api/settings/profile</code></b>
+        </p>
+                <p>
+            <label id="auth-PUTapi-settings-profile" hidden>Authorization header:
+                <b><code>Bearer </code></b><input type="text"
+                                                                name="Authorization"
+                                                                data-prefix="Bearer "
+                                                                data-endpoint="PUTapi-settings-profile"
+                                                                data-component="header"></label>
+        </p>
+                        <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
+        <p>
+            <b><code>first_name</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+                <input type="text"
+               name="first_name"
+               data-endpoint="PUTapi-settings-profile"
+               value="John."
+               data-component="body" hidden>
+    <br>
+<p>The first name of the user.</p>
+        </p>
+                <p>
+            <b><code>last_name</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+                <input type="text"
+               name="last_name"
+               data-endpoint="PUTapi-settings-profile"
+               value="Doe"
+               data-component="body" hidden>
+    <br>
+<p>The last name of the user.</p>
+        </p>
+        </form>
+
+            <h2 id="profile-management-GETapi-vendor-me">Vendor Me-Endpoint</h2>
+
+<p>
+</p>
+
+<p>This is a public endpoint that returns whether a vendor is logged in or not.</p>
+<aside class="notice">If the vendor is logged in, the profile detais are returned</aside>
+
+<span id="example-requests-GETapi-vendor-me">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request GET \
+    --get "http://shawarma-jungle.test/api/vendor/me" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json"</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://shawarma-jungle.test/api/vendor/me"
+);
+
+const headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "GET",
+    headers,
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-GETapi-vendor-me">
+            <blockquote>
+            <p>Example response (200, when vendor is logged in):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json">{
+    &quot;logged_in&quot;: true,
+    &quot;user&quot;: {
+        &quot;id&quot;: 1,
+        &quot;business_name&quot;: &quot;Crispy pies pastery&quot;,
+        &quot;manager_full_name&quot;: &quot;Jennifer sawyer&quot;,
+        &quot;manager_phone&quot;: &quot;09074563234&quot;,
+        &quot;email&quot;: &quot;king@gmail.com&quot;,
+        &quot;business_address&quot;: &quot;23 faker street&quot;,
+        &quot;business_bank_name&quot;: &quot;Delta bank&quot;,
+        &quot;business_account_number&quot;: &quot;9921341112&quot;,
+        &quot;business_account_name&quot;: &quot;Crispy pies pastery&quot;,
+        &quot;isActive&quot;: true,
+        &quot;location&quot;: {
+            &quot;type&quot;: &quot;Point&quot;,
+            &quot;coordinates&quot;: [
+                170.99456,
+                -30.23456
+            ]
+        },
+        &quot;create_dates&quot;: {
+            &quot;creadted_at_human&quot;: &quot;5 days ago&quot;,
+            &quot;creadted_at&quot;: &quot;2021-12-03T09:53:17.000000Z&quot;
+        },
+        &quot;update_dates&quot;: {
+            &quot;updated_at_human&quot;: &quot;39 seconds ago&quot;,
+            &quot;updated_at&quot;: &quot;2021-12-08T18:21:36.000000Z&quot;
+        }
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (200, when vendor is not logged in):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json">{
+    &quot;logged_in&quot;: false,
+    &quot;user&quot;: null
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-GETapi-vendor-me" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-GETapi-vendor-me"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-GETapi-vendor-me"></code></pre>
+</span>
+<span id="execution-error-GETapi-vendor-me" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-GETapi-vendor-me"></code></pre>
+</span>
+<form id="form-GETapi-vendor-me" data-method="GET"
+      data-path="api/vendor/me"
+      data-authed="0"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}'
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('GETapi-vendor-me', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+            </h3>
+            <p>
+            <small class="badge badge-green">GET</small>
+            <b><code>api/vendor/me</code></b>
+        </p>
+                    </form>
+
+            <h2 id="profile-management-PUTapi-settings-password">Change user password</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+
+
+<span id="example-requests-PUTapi-settings-password">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request PUT \
+    "http://shawarma-jungle.test/api/settings/password" \
+    --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json" \
+    --data "{
+    \"old_password\": \"dicta\",
+    \"password\": \"quam\",
+    \"password_confirmation\": \"voluptas\"
+}"
+</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://shawarma-jungle.test/api/settings/password"
+);
+
+const headers = {
+    "Authorization": "Bearer {YOUR_AUTH_KEY}",
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+let body = {
+    "old_password": "dicta",
+    "password": "quam",
+    "password_confirmation": "voluptas"
+};
+
+fetch(url, {
+    method: "PUT",
+    headers,
+    body: JSON.stringify(body),
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-PUTapi-settings-password">
+            <blockquote>
+            <p>Example response (200):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json">{
+    &quot;success&quot;: true,
+    &quot;message&quot;: &quot;Password updated&quot;,
+    &quot;data&quot;: null
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-PUTapi-settings-password" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-PUTapi-settings-password"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-PUTapi-settings-password"></code></pre>
+</span>
+<span id="execution-error-PUTapi-settings-password" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-PUTapi-settings-password"></code></pre>
+</span>
+<form id="form-PUTapi-settings-password" data-method="PUT"
+      data-path="api/settings/password"
+      data-authed="1"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      data-headers='{"Authorization":"Bearer {YOUR_AUTH_KEY}","Content-Type":"application\/json","Accept":"application\/json"}'
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('PUTapi-settings-password', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+            </h3>
+            <p>
+            <small class="badge badge-darkblue">PUT</small>
+            <b><code>api/settings/password</code></b>
+        </p>
+                <p>
+            <label id="auth-PUTapi-settings-password" hidden>Authorization header:
+                <b><code>Bearer </code></b><input type="text"
+                                                                name="Authorization"
+                                                                data-prefix="Bearer "
+                                                                data-endpoint="PUTapi-settings-password"
+                                                                data-component="header"></label>
+        </p>
+                        <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
+        <p>
+            <b><code>old_password</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+                <input type="text"
+               name="old_password"
+               data-endpoint="PUTapi-settings-password"
+               value="dicta"
+               data-component="body" hidden>
+    <br>
+
+        </p>
+                <p>
+            <b><code>password</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+                <input type="text"
+               name="password"
+               data-endpoint="PUTapi-settings-password"
+               value="quam"
+               data-component="body" hidden>
+    <br>
+
+        </p>
+                <p>
+            <b><code>password_confirmation</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+                <input type="text"
+               name="password_confirmation"
+               data-endpoint="PUTapi-settings-password"
+               value="voluptas"
+               data-component="body" hidden>
+    <br>
+
+        </p>
+        </form>
+
+            <h2 id="profile-management-PUTapi-vendor-settings-profile">Updating vendor profile</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+
+
+<span id="example-requests-PUTapi-vendor-settings-profile">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request PUT \
+    "http://shawarma-jungle.test/api/vendor/settings/profile" \
+    --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json" \
+    --data "{
+    \"business_name\": \"Tasty Shawarma\",
+    \"manager_full_name\": \"John Doe\",
+    \"manager_phone\": \"08123456789\",
+    \"bank_name\": \"Doe\",
+    \"bank_account_name\": \"Tasty Shawarma LTD\",
+    \"bank_account_number\": \"Doe\",
+    \"address\": \"Doe\",
+    \"location\": {
+        \"latitude\": 4.232423234,
+        \"longitude\": 5.423242343
+    }
+}"
+</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://shawarma-jungle.test/api/vendor/settings/profile"
+);
+
+const headers = {
+    "Authorization": "Bearer {YOUR_AUTH_KEY}",
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+let body = {
+    "business_name": "Tasty Shawarma",
+    "manager_full_name": "John Doe",
+    "manager_phone": "08123456789",
+    "bank_name": "Doe",
+    "bank_account_name": "Tasty Shawarma LTD",
+    "bank_account_number": "Doe",
+    "address": "Doe",
+    "location": {
+        "latitude": 4.232423234,
+        "longitude": 5.423242343
+    }
+};
+
+fetch(url, {
+    method: "PUT",
+    headers,
+    body: JSON.stringify(body),
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-PUTapi-vendor-settings-profile">
+            <blockquote>
+            <p>Example response (200):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json">{
+    &quot;success&quot;: true,
+    &quot;message&quot;: &quot;Updated&quot;,
+    &quot;data&quot;: {
+        &quot;id&quot;: 1,
+        &quot;business_name&quot;: &quot;Everyday&quot;,
+        &quot;manager_full_name&quot;: &quot;Jennifer sawyer&quot;,
+        &quot;manager_phone&quot;: &quot;09074322234&quot;,
+        &quot;email&quot;: &quot;king@gmail.com&quot;,
+        &quot;business_address&quot;: &quot;Everyday Supermarket MCC-Uratta Rd&quot;,
+        &quot;business_bank_name&quot;: &quot;Delta bank&quot;,
+        &quot;business_account_number&quot;: &quot;9921341112&quot;,
+        &quot;business_account_name&quot;: &quot;Crispy pies pastery&quot;,
+        &quot;isActive&quot;: false,
+        &quot;location&quot;: {
+            &quot;type&quot;: &quot;Point&quot;,
+            &quot;coordinates&quot;: [
+                7.055088732103276,
+                5.4918573093810945
+            ]
+        },
+        &quot;create_dates&quot;: {
+            &quot;creadted_at_human&quot;: &quot;1 week ago&quot;,
+            &quot;creadted_at&quot;: &quot;2021-12-03T09:53:17.000000Z&quot;
+        },
+        &quot;update_dates&quot;: {
+            &quot;updated_at_human&quot;: &quot;1 second ago&quot;,
+            &quot;updated_at&quot;: &quot;2021-12-11T07:07:32.000000Z&quot;
+        }
+    }
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-PUTapi-vendor-settings-profile" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-PUTapi-vendor-settings-profile"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-PUTapi-vendor-settings-profile"></code></pre>
+</span>
+<span id="execution-error-PUTapi-vendor-settings-profile" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-PUTapi-vendor-settings-profile"></code></pre>
+</span>
+<form id="form-PUTapi-vendor-settings-profile" data-method="PUT"
+      data-path="api/vendor/settings/profile"
+      data-authed="1"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      data-headers='{"Authorization":"Bearer {YOUR_AUTH_KEY}","Content-Type":"application\/json","Accept":"application\/json"}'
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('PUTapi-vendor-settings-profile', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+            </h3>
+            <p>
+            <small class="badge badge-darkblue">PUT</small>
+            <b><code>api/vendor/settings/profile</code></b>
+        </p>
+                <p>
+            <label id="auth-PUTapi-vendor-settings-profile" hidden>Authorization header:
+                <b><code>Bearer </code></b><input type="text"
+                                                                name="Authorization"
+                                                                data-prefix="Bearer "
+                                                                data-endpoint="PUTapi-vendor-settings-profile"
+                                                                data-component="header"></label>
+        </p>
+                        <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
+        <p>
+            <b><code>business_name</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+                <input type="text"
+               name="business_name"
+               data-endpoint="PUTapi-vendor-settings-profile"
+               value="Tasty Shawarma"
+               data-component="body" hidden>
+    <br>
+<p>Name of the business/vendor.</p>
+        </p>
+                <p>
+            <b><code>manager_full_name</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+                <input type="text"
+               name="manager_full_name"
+               data-endpoint="PUTapi-vendor-settings-profile"
+               value="John Doe"
+               data-component="body" hidden>
+    <br>
+<p>first and last name of the manager.</p>
+        </p>
+                <p>
+            <b><code>manager_phone</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+                <input type="text"
+               name="manager_phone"
+               data-endpoint="PUTapi-vendor-settings-profile"
+               value="08123456789"
+               data-component="body" hidden>
+    <br>
+<p>manager/vendor's phone number.</p>
+        </p>
+                <p>
+            <b><code>bank_name</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+                <input type="text"
+               name="bank_name"
+               data-endpoint="PUTapi-vendor-settings-profile"
+               value="Doe"
+               data-component="body" hidden>
+    <br>
+<p>Name of bankused by vendor.</p>
+        </p>
+                <p>
+            <b><code>bank_account_name</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+                <input type="text"
+               name="bank_account_name"
+               data-endpoint="PUTapi-vendor-settings-profile"
+               value="Tasty Shawarma LTD"
+               data-component="body" hidden>
+    <br>
+<p>Vendor's bank account name.</p>
+        </p>
+                <p>
+            <b><code>bank_account_number</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+                <input type="text"
+               name="bank_account_number"
+               data-endpoint="PUTapi-vendor-settings-profile"
+               value="Doe"
+               data-component="body" hidden>
+    <br>
+<p>Vendor's bank account number.</p>
+        </p>
+                <p>
+            <b><code>address</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+                <input type="text"
+               name="address"
+               data-endpoint="PUTapi-vendor-settings-profile"
+               value="Doe"
+               data-component="body" hidden>
+    <br>
+<p>Vendor's Formatted address from google maps.</p>
+        </p>
+                <p>
+            <b><code>location</code></b>&nbsp;&nbsp;<small>object</small>  &nbsp;
+                <input type="text"
+               name="location"
+               data-endpoint="PUTapi-vendor-settings-profile"
+               value=""
+               data-component="body" hidden>
+    <br>
+<p>the latitude and longitude from the google maps api</p>
+        </p>
+        </form>
+
+            <h2 id="profile-management-PUTapi-vendor-settings-password">Change vendor password</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+
+
+<span id="example-requests-PUTapi-vendor-settings-password">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request PUT \
+    "http://shawarma-jungle.test/api/vendor/settings/password" \
+    --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json" \
+    --data "{
+    \"old_password\": \"pariatur\",
+    \"password\": \"eligendi\",
+    \"password_confirmation\": \"nemo\"
+}"
+</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://shawarma-jungle.test/api/vendor/settings/password"
+);
+
+const headers = {
+    "Authorization": "Bearer {YOUR_AUTH_KEY}",
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+let body = {
+    "old_password": "pariatur",
+    "password": "eligendi",
+    "password_confirmation": "nemo"
+};
+
+fetch(url, {
+    method: "PUT",
+    headers,
+    body: JSON.stringify(body),
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-PUTapi-vendor-settings-password">
+            <blockquote>
+            <p>Example response (200):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json">{
+    &quot;success&quot;: true,
+    &quot;message&quot;: &quot;Password updated&quot;,
+    &quot;data&quot;: null
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-PUTapi-vendor-settings-password" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-PUTapi-vendor-settings-password"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-PUTapi-vendor-settings-password"></code></pre>
+</span>
+<span id="execution-error-PUTapi-vendor-settings-password" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-PUTapi-vendor-settings-password"></code></pre>
+</span>
+<form id="form-PUTapi-vendor-settings-password" data-method="PUT"
+      data-path="api/vendor/settings/password"
+      data-authed="1"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      data-headers='{"Authorization":"Bearer {YOUR_AUTH_KEY}","Content-Type":"application\/json","Accept":"application\/json"}'
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('PUTapi-vendor-settings-password', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+            </h3>
+            <p>
+            <small class="badge badge-darkblue">PUT</small>
+            <b><code>api/vendor/settings/password</code></b>
+        </p>
+                <p>
+            <label id="auth-PUTapi-vendor-settings-password" hidden>Authorization header:
+                <b><code>Bearer </code></b><input type="text"
+                                                                name="Authorization"
+                                                                data-prefix="Bearer "
+                                                                data-endpoint="PUTapi-vendor-settings-password"
+                                                                data-component="header"></label>
+        </p>
+                        <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
+        <p>
+            <b><code>old_password</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+                <input type="text"
+               name="old_password"
+               data-endpoint="PUTapi-vendor-settings-password"
+               value="pariatur"
+               data-component="body" hidden>
+    <br>
+
+        </p>
+                <p>
+            <b><code>password</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+                <input type="text"
+               name="password"
+               data-endpoint="PUTapi-vendor-settings-password"
+               value="eligendi"
+               data-component="body" hidden>
+    <br>
+
+        </p>
+                <p>
+            <b><code>password_confirmation</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+                <input type="text"
+               name="password_confirmation"
+               data-endpoint="PUTapi-vendor-settings-password"
+               value="nemo"
+               data-component="body" hidden>
+    <br>
+
+        </p>
+        </form>
+
+            <h2 id="profile-management-GETapi-me">User Me-Endpoint</h2>
+
+<p>
+</p>
+
+<p>This is a public endpoint that returns whether a user is logged in or not.</p>
+<aside class="notice">If the user is logged in, the profile detais are returned</aside>
+
+<span id="example-requests-GETapi-me">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request GET \
+    --get "http://shawarma-jungle.test/api/me" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json"</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://shawarma-jungle.test/api/me"
+);
+
+const headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "GET",
+    headers,
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-GETapi-me">
+            <blockquote>
+            <p>Example response (200, when user is logged in):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json">{
+    &quot;logged_in&quot;: true,
+    &quot;user&quot;: {
+        &quot;id&quot;: 1,
+        &quot;first_name&quot;: &quot;John&quot;,
+        &quot;last_name&quot;: &quot;Doe&quot;,
+        &quot;fullname&quot;: &quot;John Doe&quot;,
+        &quot;email&quot;: &quot;gabe@gmail.com&quot;,
+        &quot;create_dates&quot;: {
+            &quot;creadted_at_human&quot;: &quot;1 week ago&quot;,
+            &quot;creadted_at&quot;: &quot;2021-12-03T09:55:40.000000Z&quot;
+        },
+        &quot;update_dates&quot;: {
+            &quot;updated_at_human&quot;: &quot;1 week ago&quot;,
+            &quot;updated_at&quot;: &quot;2021-12-03T23:08:27.000000Z&quot;
+        }
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (200, when user is not logged in):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json">{
+    &quot;logged_in&quot;: false,
+    &quot;user&quot;: null
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-GETapi-me" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-GETapi-me"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-GETapi-me"></code></pre>
+</span>
+<span id="execution-error-GETapi-me" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-GETapi-me"></code></pre>
+</span>
+<form id="form-GETapi-me" data-method="GET"
+      data-path="api/me"
+      data-authed="0"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}'
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('GETapi-me', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+            </h3>
+            <p>
+            <small class="badge badge-green">GET</small>
+            <b><code>api/me</code></b>
+        </p>
+                    </form>
+
+        <h1 id="shipping-details-management">Shipping Details Management</h1>
+
+    
+
+            <h2 id="shipping-details-management-POSTapi-users-shipping-details">Create Shipping detail</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+
+
+<span id="example-requests-POSTapi-users-shipping-details">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request POST \
+    "http://shawarma-jungle.test/api/users/shipping-details" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json" \
+    --data "{
+    \"address\": null,
+    \"phone\": null,
+    \"state\": null,
+    \"city\": null
+}"
+</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://shawarma-jungle.test/api/users/shipping-details"
+);
+
+const headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+let body = {
+    "address": null,
+    "phone": null,
+    "state": null,
+    "city": null
+};
+
+fetch(url, {
+    method: "POST",
+    headers,
+    body: JSON.stringify(body),
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-POSTapi-users-shipping-details">
+            <blockquote>
+            <p>Example response (201):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json">{
+    &quot;success&quot;: true,
+    &quot;message&quot;: &quot;created shipping address&quot;,
+    &quot;data&quot;: {
+        &quot;id&quot;: 4,
+        &quot;address&quot;: &quot;10, Innocent fountain street&quot;,
+        &quot;landmark&quot;: &quot;Healer factory&quot;,
+        &quot;description&quot;: &quot;Near the pink house on heaven street&quot;,
+        &quot;phone&quot;: &quot;08145355239&quot;,
+        &quot;second_phone&quot;: null,
+        &quot;state&quot;: &quot;abuja&quot;,
+        &quot;city&quot;: &quot;maitama&quot;,
+        &quot;create_dates&quot;: {
+            &quot;creadted_at_human&quot;: &quot;1 second ago&quot;,
+            &quot;creadted_at&quot;: &quot;2021-12-17T22:58:14.000000Z&quot;
+        },
+        &quot;update_dates&quot;: {
+            &quot;updated_at_human&quot;: &quot;1 second ago&quot;,
+            &quot;updated_at&quot;: &quot;2021-12-17T22:58:14.000000Z&quot;
+        }
+    }
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-POSTapi-users-shipping-details" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-POSTapi-users-shipping-details"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-POSTapi-users-shipping-details"></code></pre>
+</span>
+<span id="execution-error-POSTapi-users-shipping-details" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-POSTapi-users-shipping-details"></code></pre>
+</span>
+<form id="form-POSTapi-users-shipping-details" data-method="POST"
+      data-path="api/users/shipping-details"
+      data-authed="1"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}'
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('POSTapi-users-shipping-details', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+            </h3>
+            <p>
+            <small class="badge badge-black">POST</small>
+            <b><code>api/users/shipping-details</code></b>
+        </p>
+                <p>
+            <label id="auth-POSTapi-users-shipping-details" hidden>Authorization header:
+                <b><code>Bearer </code></b><input type="text"
+                                                                name="Authorization"
+                                                                data-prefix="Bearer "
+                                                                data-endpoint="POSTapi-users-shipping-details"
+                                                                data-component="header"></label>
+        </p>
+                        <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
+        <p>
+            <b><code>address</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+                <input type="text"
+               name="address"
+               data-endpoint="POSTapi-users-shipping-details"
+               value=""
+               data-component="body" hidden>
+    <br>
+
+        </p>
+                <p>
+            <b><code>landmark</code></b>&nbsp;&nbsp;<small>string</small>     <i>optional</i> &nbsp;
+                <input type="text"
+               name="landmark"
+               data-endpoint="POSTapi-users-shipping-details"
+               value=""
+               data-component="body" hidden>
+    <br>
+
+        </p>
+                <p>
+            <b><code>description</code></b>&nbsp;&nbsp;<small>string</small>     <i>optional</i> &nbsp;
+                <input type="text"
+               name="description"
+               data-endpoint="POSTapi-users-shipping-details"
+               value=""
+               data-component="body" hidden>
+    <br>
+<p>Describe the location or address</p>
+        </p>
+                <p>
+            <b><code>phone</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+                <input type="text"
+               name="phone"
+               data-endpoint="POSTapi-users-shipping-details"
+               value=""
+               data-component="body" hidden>
+    <br>
+
+        </p>
+                <p>
+            <b><code>second_phone</code></b>&nbsp;&nbsp;<small>string</small>     <i>optional</i> &nbsp;
+                <input type="text"
+               name="second_phone"
+               data-endpoint="POSTapi-users-shipping-details"
+               value=""
+               data-component="body" hidden>
+    <br>
+
+        </p>
+                <p>
+            <b><code>state</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+                <input type="text"
+               name="state"
+               data-endpoint="POSTapi-users-shipping-details"
+               value=""
+               data-component="body" hidden>
+    <br>
+
+        </p>
+                <p>
+            <b><code>city</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+                <input type="text"
+               name="city"
+               data-endpoint="POSTapi-users-shipping-details"
+               value=""
+               data-component="body" hidden>
+    <br>
+
+        </p>
+        </form>
+
+            <h2 id="shipping-details-management-GETapi-users-shipping-details">Get all shipping details</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+<p>List of all shipping details belonging to the authenticated user</p>
+
+<span id="example-requests-GETapi-users-shipping-details">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request GET \
+    --get "http://shawarma-jungle.test/api/users/shipping-details" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json"</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://shawarma-jungle.test/api/users/shipping-details"
+);
+
+const headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "GET",
+    headers,
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-GETapi-users-shipping-details">
+    </span>
+<span id="execution-results-GETapi-users-shipping-details" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-GETapi-users-shipping-details"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-GETapi-users-shipping-details"></code></pre>
+</span>
+<span id="execution-error-GETapi-users-shipping-details" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-GETapi-users-shipping-details"></code></pre>
+</span>
+<form id="form-GETapi-users-shipping-details" data-method="GET"
+      data-path="api/users/shipping-details"
+      data-authed="1"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}'
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('GETapi-users-shipping-details', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+            </h3>
+            <p>
+            <small class="badge badge-green">GET</small>
+            <b><code>api/users/shipping-details</code></b>
+        </p>
+                <p>
+            <label id="auth-GETapi-users-shipping-details" hidden>Authorization header:
+                <b><code>Bearer </code></b><input type="text"
+                                                                name="Authorization"
+                                                                data-prefix="Bearer "
+                                                                data-endpoint="GETapi-users-shipping-details"
+                                                                data-component="header"></label>
+        </p>
+                </form>
+
+            <h2 id="shipping-details-management-GETapi-users-shipping-details--shippingDetail-">Get a shipping detail</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+
+
+<span id="example-requests-GETapi-users-shipping-details--shippingDetail-">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request GET \
+    --get "http://shawarma-jungle.test/api/users/shipping-details/3" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json"</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://shawarma-jungle.test/api/users/shipping-details/3"
+);
+
+const headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "GET",
+    headers,
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-GETapi-users-shipping-details--shippingDetail-">
+    </span>
+<span id="execution-results-GETapi-users-shipping-details--shippingDetail-" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-GETapi-users-shipping-details--shippingDetail-"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-GETapi-users-shipping-details--shippingDetail-"></code></pre>
+</span>
+<span id="execution-error-GETapi-users-shipping-details--shippingDetail-" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-GETapi-users-shipping-details--shippingDetail-"></code></pre>
+</span>
+<form id="form-GETapi-users-shipping-details--shippingDetail-" data-method="GET"
+      data-path="api/users/shipping-details/{shippingDetail}"
+      data-authed="1"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}'
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('GETapi-users-shipping-details--shippingDetail-', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+            </h3>
+            <p>
+            <small class="badge badge-green">GET</small>
+            <b><code>api/users/shipping-details/{shippingDetail}</code></b>
+        </p>
+                <p>
+            <label id="auth-GETapi-users-shipping-details--shippingDetail-" hidden>Authorization header:
+                <b><code>Bearer </code></b><input type="text"
+                                                                name="Authorization"
+                                                                data-prefix="Bearer "
+                                                                data-endpoint="GETapi-users-shipping-details--shippingDetail-"
+                                                                data-component="header"></label>
+        </p>
+                <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
+                    <p>
+                <b><code>shippingDetail</code></b>&nbsp;&nbsp;<small>integer</small>  &nbsp;
+                <input type="number"
+               name="shippingDetail"
+               data-endpoint="GETapi-users-shipping-details--shippingDetail-"
+               value="3"
+               data-component="url" hidden>
+    <br>
+
+            </p>
+                    </form>
+
+            <h2 id="shipping-details-management-PUTapi-users-shipping-details--shippingDetail-">Update Shipping Detail</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+
+
+<span id="example-requests-PUTapi-users-shipping-details--shippingDetail-">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request PUT \
+    "http://shawarma-jungle.test/api/users/shipping-details/6" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json" \
+    --data "{
+    \"address\": null,
+    \"phone\": null,
+    \"state\": null,
+    \"city\": null
+}"
+</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://shawarma-jungle.test/api/users/shipping-details/6"
+);
+
+const headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+let body = {
+    "address": null,
+    "phone": null,
+    "state": null,
+    "city": null
+};
+
+fetch(url, {
+    method: "PUT",
+    headers,
+    body: JSON.stringify(body),
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-PUTapi-users-shipping-details--shippingDetail-">
+</span>
+<span id="execution-results-PUTapi-users-shipping-details--shippingDetail-" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-PUTapi-users-shipping-details--shippingDetail-"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-PUTapi-users-shipping-details--shippingDetail-"></code></pre>
+</span>
+<span id="execution-error-PUTapi-users-shipping-details--shippingDetail-" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-PUTapi-users-shipping-details--shippingDetail-"></code></pre>
+</span>
+<form id="form-PUTapi-users-shipping-details--shippingDetail-" data-method="PUT"
+      data-path="api/users/shipping-details/{shippingDetail}"
+      data-authed="1"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}'
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('PUTapi-users-shipping-details--shippingDetail-', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+            </h3>
+            <p>
+            <small class="badge badge-darkblue">PUT</small>
+            <b><code>api/users/shipping-details/{shippingDetail}</code></b>
+        </p>
+                <p>
+            <label id="auth-PUTapi-users-shipping-details--shippingDetail-" hidden>Authorization header:
+                <b><code>Bearer </code></b><input type="text"
+                                                                name="Authorization"
+                                                                data-prefix="Bearer "
+                                                                data-endpoint="PUTapi-users-shipping-details--shippingDetail-"
+                                                                data-component="header"></label>
+        </p>
+                <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
+                    <p>
+                <b><code>shippingDetail</code></b>&nbsp;&nbsp;<small>integer</small>  &nbsp;
+                <input type="number"
+               name="shippingDetail"
+               data-endpoint="PUTapi-users-shipping-details--shippingDetail-"
+               value="6"
+               data-component="url" hidden>
+    <br>
+
+            </p>
+                            <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
+        <p>
+            <b><code>address</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+                <input type="text"
+               name="address"
+               data-endpoint="PUTapi-users-shipping-details--shippingDetail-"
+               value=""
+               data-component="body" hidden>
+    <br>
+
+        </p>
+                <p>
+            <b><code>landmark</code></b>&nbsp;&nbsp;<small>string</small>     <i>optional</i> &nbsp;
+                <input type="text"
+               name="landmark"
+               data-endpoint="PUTapi-users-shipping-details--shippingDetail-"
+               value=""
+               data-component="body" hidden>
+    <br>
+
+        </p>
+                <p>
+            <b><code>description</code></b>&nbsp;&nbsp;<small>string</small>     <i>optional</i> &nbsp;
+                <input type="text"
+               name="description"
+               data-endpoint="PUTapi-users-shipping-details--shippingDetail-"
+               value=""
+               data-component="body" hidden>
+    <br>
+<p>Describe the location or address</p>
+        </p>
+                <p>
+            <b><code>phone</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+                <input type="text"
+               name="phone"
+               data-endpoint="PUTapi-users-shipping-details--shippingDetail-"
+               value=""
+               data-component="body" hidden>
+    <br>
+
+        </p>
+                <p>
+            <b><code>second_phone</code></b>&nbsp;&nbsp;<small>string</small>     <i>optional</i> &nbsp;
+                <input type="text"
+               name="second_phone"
+               data-endpoint="PUTapi-users-shipping-details--shippingDetail-"
+               value=""
+               data-component="body" hidden>
+    <br>
+
+        </p>
+                <p>
+            <b><code>state</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+                <input type="text"
+               name="state"
+               data-endpoint="PUTapi-users-shipping-details--shippingDetail-"
+               value=""
+               data-component="body" hidden>
+    <br>
+
+        </p>
+                <p>
+            <b><code>city</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+                <input type="text"
+               name="city"
+               data-endpoint="PUTapi-users-shipping-details--shippingDetail-"
+               value=""
+               data-component="body" hidden>
+    <br>
+
+        </p>
+        </form>
+
+            <h2 id="shipping-details-management-DELETEapi-users-shipping-details--shippingDetail-">Delete shipping detail</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+
+
+<span id="example-requests-DELETEapi-users-shipping-details--shippingDetail-">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request DELETE \
+    "http://shawarma-jungle.test/api/users/shipping-details/12" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json"</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://shawarma-jungle.test/api/users/shipping-details/12"
+);
+
+const headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "DELETE",
+    headers,
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-DELETEapi-users-shipping-details--shippingDetail-">
+</span>
+<span id="execution-results-DELETEapi-users-shipping-details--shippingDetail-" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-DELETEapi-users-shipping-details--shippingDetail-"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-DELETEapi-users-shipping-details--shippingDetail-"></code></pre>
+</span>
+<span id="execution-error-DELETEapi-users-shipping-details--shippingDetail-" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-DELETEapi-users-shipping-details--shippingDetail-"></code></pre>
+</span>
+<form id="form-DELETEapi-users-shipping-details--shippingDetail-" data-method="DELETE"
+      data-path="api/users/shipping-details/{shippingDetail}"
+      data-authed="1"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}'
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('DELETEapi-users-shipping-details--shippingDetail-', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+            </h3>
+            <p>
+            <small class="badge badge-red">DELETE</small>
+            <b><code>api/users/shipping-details/{shippingDetail}</code></b>
+        </p>
+                <p>
+            <label id="auth-DELETEapi-users-shipping-details--shippingDetail-" hidden>Authorization header:
+                <b><code>Bearer </code></b><input type="text"
+                                                                name="Authorization"
+                                                                data-prefix="Bearer "
+                                                                data-endpoint="DELETEapi-users-shipping-details--shippingDetail-"
+                                                                data-component="header"></label>
+        </p>
+                <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
+                    <p>
+                <b><code>shippingDetail</code></b>&nbsp;&nbsp;<small>integer</small>  &nbsp;
+                <input type="number"
+               name="shippingDetail"
+               data-endpoint="DELETEapi-users-shipping-details--shippingDetail-"
+               value="12"
+               data-component="url" hidden>
+    <br>
+
+            </p>
+                    </form>
+
+        <h1 id="vendor-management">Vendor Management</h1>
+
+    
+
+            <h2 id="vendor-management-GETapi-search-vendors">Search for vendors</h2>
+
+<p>
+</p>
+
+<p>This endpoint allows you to retrieve all vendors within a particular distance(in km) from your shipping location</p>
+
+<span id="example-requests-GETapi-search-vendors">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request GET \
+    --get "http://shawarma-jungle.test/api/search/vendors?latitude=5.4996070920578&amp;longitude=7.0566645374734&amp;unit=km&amp;distance=7" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json"</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://shawarma-jungle.test/api/search/vendors"
+);
+
+const params = {
+    "latitude": "5.4996070920578",
+    "longitude": "7.0566645374734",
+    "unit": "km",
+    "distance": "7",
+};
+Object.keys(params)
+    .forEach(key =&gt; url.searchParams.append(key, params[key]));
+
+const headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "GET",
+    headers,
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-GETapi-search-vendors">
+            <blockquote>
+            <p>Example response (200):</p>
+        </blockquote>
+                <details class="annotation">
+            <summary>
+                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
+            </summary>
+            <pre><code class="language-http">cache-control: no-cache, private
+content-type: application/json
+x-ratelimit-limit: 60
+x-ratelimit-remaining: 55
+access-control-allow-origin: *
+ </code></pre>
+        </details>         <pre>
+
+<code class="language-json">{
+    &quot;success&quot;: true,
+    &quot;message&quot;: &quot;Success&quot;,
+    &quot;data&quot;: [
+        {
+            &quot;id&quot;: 1,
+            &quot;business_name&quot;: &quot;Everyday&quot;,
+            &quot;manager_full_name&quot;: &quot;Jennifer sawyer&quot;,
+            &quot;manager_phone&quot;: &quot;09074563234&quot;,
+            &quot;email&quot;: &quot;king@gmail.com&quot;,
+            &quot;business_address&quot;: &quot;Everyday Supermarket MCC-Uratta Rd&quot;,
+            &quot;business_bank_name&quot;: &quot;Delta bank&quot;,
+            &quot;business_account_number&quot;: &quot;9921341112&quot;,
+            &quot;business_account_name&quot;: &quot;Crispy pies pastery&quot;,
+            &quot;isActive&quot;: false,
+            &quot;location&quot;: {
+                &quot;type&quot;: &quot;Point&quot;,
+                &quot;coordinates&quot;: [
+                    7.0550887321033,
+                    5.4918573093811
+                ]
+            },
+            &quot;create_dates&quot;: {
+                &quot;creadted_at_human&quot;: &quot;1 week ago&quot;,
+                &quot;creadted_at&quot;: &quot;2021-12-03T09:53:17.000000Z&quot;
+            },
+            &quot;update_dates&quot;: {
+                &quot;updated_at_human&quot;: &quot;5 days ago&quot;,
+                &quot;updated_at&quot;: &quot;2021-12-11T07:07:32.000000Z&quot;
+            }
+        },
+        {
+            &quot;id&quot;: 2,
+            &quot;business_name&quot;: &quot;Destiny Pharmacy &amp; Variety Stores&quot;,
+            &quot;manager_full_name&quot;: &quot;Kingsley Davidson&quot;,
+            &quot;manager_phone&quot;: &quot;08142368898&quot;,
+            &quot;email&quot;: &quot;destiny@gmail.com&quot;,
+            &quot;business_address&quot;: &quot;Bishop Unegbu Ave, 460108, Owerri&quot;,
+            &quot;business_bank_name&quot;: &quot;fidelity&quot;,
+            &quot;business_account_number&quot;: &quot;6098434582&quot;,
+            &quot;business_account_name&quot;: &quot;gabriel ibenye&quot;,
+            &quot;isActive&quot;: false,
+            &quot;location&quot;: {
+                &quot;type&quot;: &quot;Point&quot;,
+                &quot;coordinates&quot;: [
+                    7.0371823048177,
+                    5.5080553549964
+                ]
+            },
+            &quot;create_dates&quot;: {
+                &quot;creadted_at_human&quot;: &quot;5 days ago&quot;,
+                &quot;creadted_at&quot;: &quot;2021-12-11T07:14:20.000000Z&quot;
+            },
+            &quot;update_dates&quot;: {
+                &quot;updated_at_human&quot;: &quot;4 days ago&quot;,
+                &quot;updated_at&quot;: &quot;2021-12-12T10:38:22.000000Z&quot;
+            }
+        },
+        {
+            &quot;id&quot;: 3,
+            &quot;business_name&quot;: &quot;All Seasons Hotel&quot;,
+            &quot;manager_full_name&quot;: &quot;Kingsley Davidson&quot;,
+            &quot;manager_phone&quot;: &quot;08142368898&quot;,
+            &quot;email&quot;: &quot;all@gmail.com&quot;,
+            &quot;business_address&quot;: &quot;5047-5049 All Seasons Avenue, Commercial District G, 460271, Owerri&quot;,
+            &quot;business_bank_name&quot;: &quot;fidelity&quot;,
+            &quot;business_account_number&quot;: &quot;6098434582&quot;,
+            &quot;business_account_name&quot;: &quot;gabriel ibenye&quot;,
+            &quot;isActive&quot;: false,
+            &quot;location&quot;: {
+                &quot;type&quot;: &quot;Point&quot;,
+                &quot;coordinates&quot;: [
+                    7.0176048608446,
+                    5.4735869228838
+                ]
+            },
+            &quot;create_dates&quot;: {
+                &quot;creadted_at_human&quot;: &quot;5 days ago&quot;,
+                &quot;creadted_at&quot;: &quot;2021-12-11T07:17:15.000000Z&quot;
+            },
+            &quot;update_dates&quot;: {
+                &quot;updated_at_human&quot;: &quot;5 days ago&quot;,
+                &quot;updated_at&quot;: &quot;2021-12-11T07:17:40.000000Z&quot;
+            }
+        }
+    ]
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-GETapi-search-vendors" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-GETapi-search-vendors"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-GETapi-search-vendors"></code></pre>
+</span>
+<span id="execution-error-GETapi-search-vendors" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-GETapi-search-vendors"></code></pre>
+</span>
+<form id="form-GETapi-search-vendors" data-method="GET"
+      data-path="api/search/vendors"
+      data-authed="0"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}'
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('GETapi-search-vendors', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+            </h3>
+            <p>
+            <small class="badge badge-green">GET</small>
+            <b><code>api/search/vendors</code></b>
+        </p>
+                        <h4 class="fancy-heading-panel"><b>Query Parameters</b></h4>
+                    <p>
+                <b><code>latitude</code></b>&nbsp;&nbsp;<small>decimal</small>     <i>optional</i> &nbsp;
+                <input type="text"
+               name="latitude"
+               data-endpoint="GETapi-search-vendors"
+               value="5.4996070920578"
+               data-component="query" hidden>
+    <br>
+<p>Latitude gotten from the google place api</p>
+            </p>
+                    <p>
+                <b><code>longitude</code></b>&nbsp;&nbsp;<small>decimal</small>     <i>optional</i> &nbsp;
+                <input type="text"
+               name="longitude"
+               data-endpoint="GETapi-search-vendors"
+               value="7.0566645374734"
+               data-component="query" hidden>
+    <br>
+<p>Longitude gotten from the google place api</p>
+            </p>
+                    <p>
+                <b><code>unit</code></b>&nbsp;&nbsp;<small>string</small>     <i>optional</i> &nbsp;
+                <input type="text"
+               name="unit"
+               data-endpoint="GETapi-search-vendors"
+               value="km"
+               data-component="query" hidden>
+    <br>
+<p>unit of measure for the distance(km or miles). if unit is not provided it will default to miles</p>
+            </p>
+                    <p>
+                <b><code>distance</code></b>&nbsp;&nbsp;<small>integer</small>     <i>optional</i> &nbsp;
+                <input type="number"
+               name="distance"
+               data-endpoint="GETapi-search-vendors"
+               value="7"
+               data-component="query" hidden>
+    <br>
+<p>The user's distance from the vendors</p>
+            </p>
+                </form>
+
+            <h2 id="vendor-management-GETapi-vendors">List of vendors</h2>
+
+<p>
+</p>
+
+
+
+<span id="example-requests-GETapi-vendors">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request GET \
+    --get "http://shawarma-jungle.test/api/vendors" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json"</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://shawarma-jungle.test/api/vendors"
+);
+
+const headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "GET",
+    headers,
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-GETapi-vendors">
+    </span>
+<span id="execution-results-GETapi-vendors" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-GETapi-vendors"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-GETapi-vendors"></code></pre>
+</span>
+<span id="execution-error-GETapi-vendors" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-GETapi-vendors"></code></pre>
+</span>
+<form id="form-GETapi-vendors" data-method="GET"
+      data-path="api/vendors"
+      data-authed="0"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}'
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('GETapi-vendors', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+            </h3>
+            <p>
+            <small class="badge badge-green">GET</small>
+            <b><code>api/vendors</code></b>
+        </p>
+                    </form>
+
+            <h2 id="vendor-management-GETapi-vendors--vendor-">Get a vevndor</h2>
+
+<p>
+</p>
+
+
+
+<span id="example-requests-GETapi-vendors--vendor-">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request GET \
+    --get "http://shawarma-jungle.test/api/vendors/11" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json"</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://shawarma-jungle.test/api/vendors/11"
+);
+
+const headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "GET",
+    headers,
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-GETapi-vendors--vendor-">
+    </span>
+<span id="execution-results-GETapi-vendors--vendor-" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-GETapi-vendors--vendor-"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-GETapi-vendors--vendor-"></code></pre>
+</span>
+<span id="execution-error-GETapi-vendors--vendor-" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-GETapi-vendors--vendor-"></code></pre>
+</span>
+<form id="form-GETapi-vendors--vendor-" data-method="GET"
+      data-path="api/vendors/{vendor}"
+      data-authed="0"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}'
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('GETapi-vendors--vendor-', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+            </h3>
+            <p>
+            <small class="badge badge-green">GET</small>
+            <b><code>api/vendors/{vendor}</code></b>
+        </p>
+                    <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
+                    <p>
+                <b><code>vendor</code></b>&nbsp;&nbsp;<small>integer</small>  &nbsp;
+                <input type="number"
+               name="vendor"
+               data-endpoint="GETapi-vendors--vendor-"
+               value="11"
+               data-component="url" hidden>
+    <br>
+
+            </p>
+                    </form>
+
+    
+
+        
+    </div>
+    <div class="dark-box">
+                    <div class="lang-selector">
+                                                        <button type="button" class="lang-button" data-language-name="bash">bash</button>
+                                                        <button type="button" class="lang-button" data-language-name="javascript">javascript</button>
+                            </div>
+            </div>
+</div>
+</body>
+</html>

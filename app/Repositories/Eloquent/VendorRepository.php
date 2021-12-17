@@ -24,10 +24,8 @@ class VendorRepository extends BaseRepository implements IVendor
     {
         $query = (new $this->model)->newQuery();
 
-        //only vendors who have products
-        if ($request->has_products) {
-            $query->has('products');
-        }
+        // returns only vendors who have products by default
+        $query->has('products');
 
         $lat = $request->latitude;
         $lng = $request->longitude;

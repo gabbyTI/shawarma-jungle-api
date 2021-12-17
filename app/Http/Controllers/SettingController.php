@@ -13,6 +13,9 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Grimzy\LaravelMysqlSpatial\Types\Point;
 
+/**
+ * @group Profile Management
+ */
 class SettingController extends Controller
 {
     protected $users;
@@ -24,6 +27,18 @@ class SettingController extends Controller
         $this->vendors = $vendors;
     }
 
+    /**
+     * Updating user profile
+     *
+     * @authenticated
+     *
+     * Used to update the details of the currently authenticated user.
+     *
+     * @bodyParam first_name string required The first name of the user. Example: John.
+     * @bodyParam last_name string required The last name of the user. Example: Doe
+     *
+     * @responseFile 200 storage\responses\update.user.profile.json
+     */
     public function updateUserProfile(Request $request)
     {
         $request->validate([
@@ -39,6 +54,21 @@ class SettingController extends Controller
         return ApiResponder::successResponse("Updated", new UserResource($user));
     }
 
+    /**
+     * Change user password
+     *
+     * @authenticated
+     *
+     * Used to update the password of the currently logged in user.
+     *
+     * @bodyParam old_password string required
+     * @bodyParam password string required
+     * @bodyParam password_confirmation string required
+     *
+     * @responseFile 200 storage\responses\update.password.json
+     *
+     *
+     */
     public function updateUserPassword(Request $request)
     {
 
@@ -56,6 +86,25 @@ class SettingController extends Controller
     }
 
 
+    /**
+     * Updating vendor profile
+     *
+     * @authenticated
+     *
+     * Used to update the details of the currently authenticated vendor.
+     *
+     * @bodyParam business_name string required Name of the business/vendor. Example: Tasty Shawarma
+     * @bodyParam manager_full_name string required first and last name of the manager. Example: John Doe
+     * @bodyParam manager_phone string required manager/vendor's phone number. Example: 08123456789
+     * @bodyParam bank_name string required Name of bankused by vendor. Example: Doe
+     * @bodyParam bank_account_name string required Vendor's bank account name. Example: Tasty Shawarma LTD
+     * @bodyParam bank_account_number string required Vendor's bank account number. Example: Doe
+     * @bodyParam address string required Vendor's Formatted address from google maps. Example: Doe
+     * @bodyParam location object required the latitude and longitude from the google maps api Example: {"latitude": 4.232423234, "longitude": 5.423242343}
+
+     * @responseFile 200 storage\responses\update.vendor.profile.json
+     *
+     */
     public function updateVendorProfile(Request $request)
     {
         $request->validate([
@@ -85,6 +134,22 @@ class SettingController extends Controller
 
         return ApiResponder::successResponse("Updated", new VendorResource($vendor));
     }
+
+    /**
+     * Change vendor password
+     *
+     * @authenticated
+     *
+     * Used to update the password of the currently logged in vendor
+     *
+     * @bodyParam old_password password required.
+     * @bodyParam password password required.
+     * @bodyParam password_confirmation password required.
+     *
+     * @responseFile 200 storage\responses\update.password.json
+     *
+     *
+     */
 
     public function updateVendorPassword(Request $request)
     {

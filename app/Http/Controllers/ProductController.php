@@ -17,6 +17,9 @@ use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 use SebastianBergmann\Environment\Console;
 
+/**
+ * @group Product Management
+ */
 class ProductController extends Controller
 {
 

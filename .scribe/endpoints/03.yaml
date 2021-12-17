@@ -1,0 +1,294 @@
+name: "Product Management"
+description: ""
+endpoints:
+  - httpMethods:
+      - GET
+    uri: api/vendor/products
+    metadata:
+      title: "Get vendors products"
+      description: "Returns all products belonging to the authenticated vendor"
+      authenticated: true
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    queryParameters: []
+    bodyParameters: []
+    responses:
+      - status: 200
+        content: |
+          {
+            "success": true,
+            "message": "Successful",
+            "data": [
+                {
+                    "id": 4,
+                    "name": "Beef sharwama",
+                    "slug": "beef-sharwama",
+                    "price": 1500,
+                    "description": null,
+                    "images": {
+                        "thumbnail": "http://shawarma-jungle.test/storage/uploads/products/thumbnail/1639207142_screenshot_(5).png",
+                        "original": "http://shawarma-jungle.test/storage/uploads/products/original/1639207142_screenshot_(5).png",
+                        "large": "http://shawarma-jungle.test/storage/uploads/products/large/1639207142_screenshot_(5).png"
+                    },
+                    "isActive": false,
+                    "create_dates": {
+                        "creadted_at_human": "6 days ago",
+                        "creadted_at": "2021-12-11T07:19:02.000000Z"
+                    },
+                    "update_dates": {
+                        "updated_at_human": "6 days ago",
+                        "updated_at": "2021-12-11T07:19:05.000000Z"
+                    }
+                }
+            ]
+          }'
+        headers:
+          cache-control: "no-cache, private"
+          content-type: application/json
+          access-control-allow-origin: "*"
+        description: null
+    responseFields: []
+  - httpMethods:
+      - GET
+    uri: "api/vendor/products/{product}"
+    metadata:
+      title: "Get a product"
+      description: "Returns a single product of an authenticated vendor"
+      authenticated: true
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      product:
+        name: product
+        description: ""
+        required: true
+        example: 14
+        type: integer
+    queryParameters: []
+    bodyParameters: []
+    responses:
+      - status: 200
+        content: |
+          {
+            "success": true,
+            "message": "Successful",
+            "data":
+              {
+                "id": 4,
+                "name": "Beef sharwama",
+                "slug": "beef-sharwama",
+                "price": 1500,
+                "images": {
+                    "thumbnail": "http://shawarma-jungle.test/storage/uploads/products/thumbnail/1639207142_screenshot_(5).png",
+                    "original": "http://shawarma-jungle.test/storage/uploads/products/original/1639207142_screenshot_(5).png",
+                    "large": "http://shawarma-jungle.test/storage/uploads/products/large/1639207142_screenshot_(5).png"
+                },
+                "isActive": false,
+                "create_dates": {
+                    "creadted_at_human": "6 days ago",
+                    "creadted_at": "2021-12-11T07:19:02.000000Z"
+                },
+                "update_dates": {
+                    "updated_at_human": "6 days ago",
+                    "updated_at": "2021-12-11T07:19:05.000000Z"
+                }
+              }
+          }
+        headers:
+          cache-control: "no-cache, private"
+          content-type: application/json
+          access-control-allow-origin: "*"
+        description: null
+    responseFields: []
+  - httpMethods:
+      - POST
+    uri: api/vendor/products
+    metadata:
+      title: "Create product"
+      description: ""
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    queryParameters: []
+    bodyParameters:
+      name:
+        name: name
+        description: "The name of the product."
+        required: true
+        example: Chicken Sharwama.
+        type: string
+      description:
+        name: description
+        description: "about the product"
+        required: false
+        example:
+        type: string
+      image:
+        name: image
+        description: "product image"
+        required: true
+        example:
+        type: file
+      price:
+        name: price
+        description: "price of the product"
+        required: true
+        example:
+        type: string
+    responses:
+      - status: 200
+        content: |
+          {
+            "success": true,
+            "message": "Created product successfully",
+            "data":
+              {
+                "id": 4,
+                "name": "Beef sharwama",
+                "slug": "beef-sharwama",
+                "price": 1500,
+                "description": null,
+                "images": {
+                    "thumbnail": "http://shawarma-jungle.test/storage/uploads/products/thumbnail/1639207142_screenshot_(5).png",
+                    "original": "http://shawarma-jungle.test/storage/uploads/products/original/1639207142_screenshot_(5).png",
+                    "large": "http://shawarma-jungle.test/storage/uploads/products/large/1639207142_screenshot_(5).png"
+                },
+                "isActive": false,
+                "create_dates": {
+                    "creadted_at_human": "6 days ago",
+                    "creadted_at": "2021-12-11T07:19:02.000000Z"
+                },
+                "update_dates": {
+                    "updated_at_human": "6 days ago",
+                    "updated_at": "2021-12-11T07:19:05.000000Z"
+                }
+              }
+          }
+        headers:
+          cache-control: "no-cache, private"
+          content-type: application/json
+          access-control-allow-origin: "*"
+        description: null
+    responseFields: []
+  - httpMethods:
+      - POST
+    uri: "api/vendor/products/{product}"
+    metadata:
+      title: "Update product"
+      description: ""
+      authenticated: true
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      product:
+        name: product
+        description: ""
+        required: true
+        example: 17
+        type: integer
+    queryParameters:
+      _method:
+        name: _method
+        description: The http request method to be used here is PUT
+        required: true
+        example: PUT
+        type: string
+    bodyParameters:
+      name:
+        name: name
+        description: "The name of the product."
+        required: true
+        example: Chicken Sharwama.
+        type: string
+      description:
+        name: description
+        description: "about the product"
+        required: false
+        example:
+        type: string
+      image:
+        name: image
+        description: "product image"
+        required: true
+        example:
+        type: file
+      price:
+        name: price
+        description: "price of the product"
+        required: true
+        example:
+        type: string
+    responses:
+      - status: 200
+        content: |
+          {
+            "success": true,
+            "message": "Updated product successfully",
+            "data":
+              {
+                "id": 4,
+                "name": "Beef sharwama",
+                "slug": "beef-sharwama",
+                "price": 1500,
+                "description": null,
+                "images": {
+                    "thumbnail": "http://shawarma-jungle.test/storage/uploads/products/thumbnail/1639207142_screenshot_(5).png",
+                    "original": "http://shawarma-jungle.test/storage/uploads/products/original/1639207142_screenshot_(5).png",
+                    "large": "http://shawarma-jungle.test/storage/uploads/products/large/1639207142_screenshot_(5).png"
+                },
+                "isActive": false,
+                "create_dates": {
+                    "creadted_at_human": "6 days ago",
+                    "creadted_at": "2021-12-11T07:19:02.000000Z"
+                },
+                "update_dates": {
+                    "updated_at_human": "6 days ago",
+                    "updated_at": "2021-12-11T07:19:05.000000Z"
+                }
+              }
+          }
+        headers:
+          cache-control: "no-cache, private"
+          content-type: application/json
+          access-control-allow-origin: "*"
+        description: null
+    responseFields: []
+  - httpMethods:
+      - DELETE
+    uri: "api/vendor/products/{product}"
+    metadata:
+      title: "Delete product"
+      description: ""
+      authenticated: true
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      product:
+        name: product
+        description: ""
+        required: true
+        example: 15
+        type: integer
+    queryParameters: []
+    bodyParameters: []
+    responses:
+      - status: 200
+        content: ""
+        headers:
+          cache-control: "no-cache, private"
+          content-type: application/json
+          access-control-allow-origin: "*"
+        description: "204 No Content"
+    responseFields: []

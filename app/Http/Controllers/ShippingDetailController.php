@@ -9,6 +9,9 @@ use App\Models\ShippingDetail;
 use App\Repositories\Eloquent\Criteria\ForUser;
 use Illuminate\Http\Request;
 
+/**
+ * @group Shipping Details Management
+ */
 class ShippingDetailController extends Controller
 {
     protected $shippingDetails;

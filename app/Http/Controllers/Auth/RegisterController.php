@@ -16,6 +16,9 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Grimzy\LaravelMysqlSpatial\Types\Point;
 
+/**
+ * @group Account Management
+ */
 class RegisterController extends Controller
 {
     /*

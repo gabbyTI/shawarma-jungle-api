@@ -11,6 +11,9 @@ use App\Repositories\Eloquent\Criteria\ForUser;
 use App\Repositories\Eloquent\Criteria\ForVendor;
 use Illuminate\Http\Request;
 
+/**
+ * @group Order Management
+ */
 class OrderController extends Controller
 {
     protected $orders;

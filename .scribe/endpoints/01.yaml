@@ -1,0 +1,334 @@
+name: "Account Management"
+description: ""
+endpoints:
+  - httpMethods:
+      - POST
+    uri: api/password/email
+    metadata:
+      title: "Send user password reset link"
+      description: ""
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    queryParameters: []
+    bodyParameters: []
+    responses: []
+    responseFields: []
+  - httpMethods:
+      - POST
+    uri: api/account/delete
+    metadata:
+      title: "Delete User Account"
+      description: ""
+      authenticated: true
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    queryParameters: []
+    bodyParameters: []
+    responses: []
+    responseFields: []
+  - httpMethods:
+      - POST
+    uri: api/vendor/password/email
+    metadata:
+      title: "Send vendor password reset link"
+      description: ""
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    queryParameters: []
+    bodyParameters: []
+    responses: []
+    responseFields: []
+  - httpMethods:
+      - POST
+    uri: api/vendor/account/delete
+    metadata:
+      title: "Delete Vendor Account"
+      description: ""
+      authenticated: true
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    queryParameters: []
+    bodyParameters: []
+    responses: []
+    responseFields: []
+  - httpMethods:
+      - POST
+    uri: api/register/user
+    metadata:
+      title: "User Registration"
+      description: ""
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    queryParameters: []
+    bodyParameters: []
+    responses: []
+    responseFields: []
+  - httpMethods:
+      - POST
+    uri: "api/verification/verify/{user}"
+    metadata:
+      title: "Verify user email"
+      description: "Linked user to verify users email after registration"
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      user:
+        name: user
+        description: ""
+        required: true
+        example: 19
+        type: integer
+    queryParameters: []
+    bodyParameters: []
+    responses: []
+    responseFields: []
+  - httpMethods:
+      - POST
+    uri: api/verification/resend
+    metadata:
+      title: "Resend user email verification link"
+      description: ""
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    queryParameters: []
+    bodyParameters: []
+    responses: []
+    responseFields: []
+  - httpMethods:
+      - POST
+    uri: api/login
+    metadata:
+      title: "User Login"
+      description: ""
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    queryParameters: []
+    bodyParameters: []
+    responses: []
+    responseFields: []
+  - httpMethods:
+      - POST
+    uri: api/password/reset
+    metadata:
+      title: "Reset user's password."
+      description: ""
+      authenticated: true
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    queryParameters: []
+    bodyParameters: []
+    responses: []
+    responseFields: []
+  - httpMethods:
+      - POST
+    uri: api/vendor/register
+    metadata:
+      title: "Vendor Registration"
+      description: ""
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    queryParameters: []
+    bodyParameters:
+      business_name:
+        name: business_name
+        description: "Name of the business/vendor."
+        required: true
+        example: "Tasty Shawarma"
+        type: string
+      manager_full_name:
+        name: manager_full_name
+        description: "first and last name of the manager."
+        required: true
+        example: "John Doe"
+        type: string
+      manager_phone:
+        name: manager_phone
+        description: "manager/vendor's phone number."
+        required: true
+        example: "08123456789"
+        type: string
+      bank_name:
+        name: bank_name
+        description: "Name of bankused by vendor."
+        required: true
+        example: Doe
+        type: string
+      bank_account_name:
+        name: bank_account_name
+        description: "Vendor's bank account name."
+        required: true
+        example: "Tasty Shawarma LTD"
+        type: string
+      bank_account_number:
+        name: bank_account_number
+        description: "Vendor's bank account number."
+        required: true
+        example: Doe
+        type: string
+      address:
+        name: address
+        description: "Vendor's Formatted address from google maps."
+        required: true
+        example: Doe
+        type: string
+      location:
+        name: location
+        description: "the latitude and longitude from the google maps api"
+        required: true
+        example:
+          latitude: 4.232423234
+          longitude: 5.423242343
+        type: object
+      password:
+        name: password
+        description:
+        required: true
+        example: eligendi
+        type: string
+      password_confirmation:
+        name: password_confirmation
+        description:
+        required: true
+        example: nemo
+        type: string
+    responses: []
+    responseFields: []
+  - httpMethods:
+      - POST
+    uri: "api/vendor/verification/verify/{vendor}"
+    metadata:
+      title: "Verify vendor email"
+      description: ""
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      vendor:
+        name: vendor
+        description: ""
+        required: true
+        example: 9
+        type: integer
+    queryParameters: []
+    bodyParameters: []
+    responses: []
+    responseFields: []
+  - httpMethods:
+      - POST
+    uri: api/vendor/verification/resend
+    metadata:
+      title: "Resend vendor email verification link"
+      description: ""
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    queryParameters: []
+    bodyParameters: []
+    responses: []
+    responseFields: []
+  - httpMethods:
+      - POST
+    uri: api/vendor/login
+    metadata:
+      title: "Vendor Login"
+      description: ""
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    queryParameters: []
+    bodyParameters: []
+    responses: []
+    responseFields: []
+  - httpMethods:
+      - POST
+    uri: api/vendor/password/reset
+    metadata:
+      title: "Reset vendor's password."
+      description: ""
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    queryParameters: []
+    bodyParameters: []
+    responses: []
+    responseFields: []
+
+  - httpMethods:
+      - POST
+    uri: api/logout
+    metadata:
+      title: "Logout User"
+      description: ""
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    queryParameters: []
+    bodyParameters: []
+    responses: []
+    responseFields: []
+  - httpMethods:
+      - POST
+    uri: api/vendor/logout
+    metadata:
+      title: "Logout Vendor"
+      description: ""
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    queryParameters: []
+    bodyParameters: []
+    responses: []
+    responseFields: []
