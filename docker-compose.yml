@@ -1,0 +1,55 @@
+version: "3"
+
+networks:
+    laravel:
+
+services:
+    nginx:
+        container_name: shawarma_jungle-nginx
+        image: nginx:stable-alpine
+        ports:
+            - "6066:80"
+        volumes:
+            - ./:/var/www/html
+            - ./nginx/default.conf:/etc/nginx/conf.d/default.conf
+        depends_on:
+            - php
+            - mysql
+        networks:
+            - laravel
+
+    mysql:
+        image: mysql:8
+        container_name: shawarma_jungle-mysql
+        restart: unless-stopped
+        tty: true
+        ports:
+            - "4306:3306"
+        volumes:
+            - ./mysql:/var/lib/mysql
+        environment:
+            MYSQL_DATABASE: sharwama_jungle
+            MYSQL_USER: root_user
+            MYSQL_PASSWORD: password
+            MYSQL_ROOT_PASSWORD: password
+            SERVICE_TAGS: dev
+            SERVICE_NAME: mysql
+        networks:
+            - laravel
+
+    php:
+        build: ./
+        container_name: shawarma_jungle-php
+        volumes:
+            - ./:/var/www/html
+        networks:
+            - laravel
+
+    mailhog:
+        image: "mailhog/mailhog:latest"
+        container_name: shawarma_jungle-mailhog
+        ports:
+            - "${FORWARD_MAILHOG_PORT:-1025}:1025"
+            - "${FORWARD_MAILHOG_DASHBOARD_PORT:-8025}:8025"
+        networks:
+            - laravel
