@@ -20,7 +20,7 @@ class VendorRepository extends BaseRepository implements IVendor
         return $this->model->where('email', $email)->first();
     }
 
-    public function search(Request $request)
+    public function within(Request $request)
     {
         $query = (new $this->model)->newQuery();
 

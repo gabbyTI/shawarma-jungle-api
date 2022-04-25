@@ -7,6 +7,7 @@ use App\Http\Resources\ShippingDetailResource;
 use App\Repositories\Contracts\IShippingDetail;
 use App\Models\ShippingDetail;
 use App\Repositories\Eloquent\Criteria\ForUser;
+use Grimzy\LaravelMysqlSpatial\Types\Point;
 use Illuminate\Http\Request;
 
 /**
@@ -30,9 +31,13 @@ class ShippingDetailController extends Controller
             'phone' => ['required', 'string', 'max:14'],
             'second_phone' => ['string', 'max:14'],
             'state' => ['required', 'string'],
+            'location.latitude' => ['required', 'numeric', 'min:-90', 'max:90'],
+            'location.longitude' => ['required', 'numeric', 'min:-180', 'max:180'],
             'city' => ['required', 'string'],
         ]);
 
+        // $location = new Point($request->location['latitude'], $request->location['longitude']);
+        // dd($request->location);
         $shippingDetail = $this->shippingDetails->create([
             'user_id' => auth()->id(),
             'address' => $request->address,
@@ -42,6 +47,7 @@ class ShippingDetailController extends Controller
             'second_phone' => $request->second_phone,
             'state' => $request->state,
             'city' => $request->city,
+            'location' => $request->location
         ]);
 
         return ApiResponder::successResponse("created shipping address", new ShippingDetailResource($shippingDetail), 201);

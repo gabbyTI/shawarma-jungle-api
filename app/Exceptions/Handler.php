@@ -67,7 +67,7 @@ class Handler extends ExceptionHandler
 
         if ($exception instanceof ValidationException && $request->expectsJson()) {
 
-            return ApiResponder::failureResponse($exception->getMessage(),  $exception->status, $this->transformErrors($exception));
+            return ApiResponder::failureResponse($exception->getMessage(),  $exception->status, $exception->errors());
             // return ApiResponder::failureResponse($exception->getMessage(),  $exception->status, $this->transformErrors($exception));
         }
 
@@ -80,7 +80,11 @@ class Handler extends ExceptionHandler
         $errors = [];
 
         foreach ($exception->errors() as $field => $message) {
-            $errors[] = $message[0];
+            $errors[] = [
+                $field => [
+                    $message[0]
+                ]
+            ];
         }
 
         return $errors;

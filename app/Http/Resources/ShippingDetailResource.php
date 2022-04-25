@@ -23,6 +23,12 @@ class ShippingDetailResource extends JsonResource
             'second_phone' => $this->second_phone,
             'state' => $this->state,
             'city' => $this->city,
+            "location" => [
+                'latlng' => $this->location["latitude"] . ',' . $this->location["longitude"],
+                'coordinates' => $this->location
+
+            ],
+            'user' => new UserResource($this->user),
             'create_dates' => [
                 'creadted_at_human' => $this->created_at->diffForHumans(),
                 'creadted_at' => $this->created_at,

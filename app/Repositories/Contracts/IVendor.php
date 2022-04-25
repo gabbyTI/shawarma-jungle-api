@@ -7,5 +7,5 @@ use Illuminate\Http\Request;
 interface IVendor
 {
     public function findByEmail($email);
-    public function search(Request $request);
+    public function within(Request $request);
 }

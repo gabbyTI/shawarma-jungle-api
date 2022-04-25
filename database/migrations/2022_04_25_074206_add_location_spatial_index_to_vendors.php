@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddLocationToVendorsTable extends Migration
+class AddLocationSpatialIndexToVendors extends Migration
 {
     /**
      * Run the migrations.
@@ -14,7 +14,7 @@ class AddLocationToVendorsTable extends Migration
     public function up()
     {
         Schema::table('vendors', function (Blueprint $table) {
-            $table->point('location');
+            $table->spatialIndex('location');
         });
     }
 
@@ -26,7 +26,7 @@ class AddLocationToVendorsTable extends Migration
     public function down()
     {
         Schema::table('vendors', function (Blueprint $table) {
-            $table->dropColumn('location');
+            $table->dropSpatialIndex(['location']);
         });
     }
 }

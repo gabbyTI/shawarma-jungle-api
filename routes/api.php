@@ -31,7 +31,7 @@ use Illuminate\Support\Facades\Route;
 //                                            PUBLIC ROUTES
 Route::group(['middleware' => ['assign.guard:user-api']], function () {
     Route::get('me', [MeController::class, 'getMe']);
-    Route::get('search/vendors', [VendorController::class, 'search']);
+    Route::get('/vendors/get-vendors-within', [VendorController::class, 'getVendorsWithin']);
 });
 Route::group(['middleware' => ['assign.guard:vendor-api']], function () {
     Route::get('vendor/me', [VendorMeController::class, 'getMe']);
@@ -55,7 +55,7 @@ Route::group(['middleware' => ['assign.guard:user-api', 'auth:user-api']], funct
     Route::get('vendors', [VendorController::class, 'getActiveVendors']);
     Route::get('vendors/{vendor}', [VendorController::class, 'getVendor']);
 
-    Route::post('orders/user', [OrderController::class, 'placeOrder']);
+    Route::post('orders/vendor/{vendor}', [OrderController::class, 'placeOrder']);
     Route::get('orders/user', [OrderController::class, 'getUserOrders']);
 });
 

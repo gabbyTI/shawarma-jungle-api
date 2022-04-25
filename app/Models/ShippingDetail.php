@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Grimzy\LaravelMysqlSpatial\Eloquent\SpatialTrait;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -18,6 +19,11 @@ class ShippingDetail extends Model
         'second_phone',
         'state',
         'city',
+        'location',
+    ];
+
+    protected $casts = [
+        'location' => 'array'
     ];
 
     public function user()

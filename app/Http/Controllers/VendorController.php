@@ -40,9 +40,9 @@ class VendorController extends Controller
         return ApiResponder::successResponse("Retrieved vendor", new VendorResource($vendor));
     }
 
-    public function search(Request $request)
+    public function getVendorsWithin(Request $request)
     {
-        $vendors = $this->vendors->search($request);
+        $vendors = $this->vendors->within($request);
         return ApiResponder::successResponse('Success', VendorResource::collection($vendors));
     }
 }
