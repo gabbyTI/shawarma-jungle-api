@@ -60,3 +60,7 @@ View the API documentation at [http://localhost:6066/docs](http://localhost:6066
 ## Emails
 
 View emails on mailhog here: [http://localhost:8025](http://localhost:8025).
+
+## PhpMyAdmin
+
+View the database with phpmyadmin dashboard: [http://localhost:8081](http://localhost:8081)
