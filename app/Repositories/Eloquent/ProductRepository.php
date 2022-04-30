@@ -21,4 +21,9 @@ class ProductRepository extends BaseRepository implements IProduct
     {
         return $vendor->products->where('id', $product_id);
     }
+
+    public function addToCart($productId)
+    {
+        $this->model->addToCart($productId);
+    }
 }

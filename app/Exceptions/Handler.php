@@ -5,6 +5,7 @@ namespace App\Exceptions;
 use App\Helpers\ApiResponder;
 use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Auth\AuthenticationException;
+use Freshbitsweb\LaravelCartManager\Exceptions\ItemMissing;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Illuminate\Validation\ValidationException;
@@ -63,6 +64,11 @@ class Handler extends ExceptionHandler
         if ($exception instanceof AuthenticationException && $request->expectsJson()) {
 
             return ApiResponder::failureResponse("You are not logged in", 401);
+        }
+
+        if ($exception instanceof ItemMissing && $request->expectsJson()) {
+
+            return ApiResponder::failureResponse("Cart item not found", 404);
         }
 
         if ($exception instanceof ValidationException && $request->expectsJson()) {

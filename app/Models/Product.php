@@ -2,13 +2,14 @@
 
 namespace App\Models;
 
+use Freshbitsweb\LaravelCartManager\Traits\Cartable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Storage;
 
 class Product extends Model
 {
-    use HasFactory;
+    use HasFactory, Cartable;
 
     protected $fillable = [
         'vendor_id',
@@ -40,4 +41,9 @@ class Product extends Model
     {
         return Storage::disk($this->disk)->url("uploads/products/{$size}/" . $this->image);
     }
+
+    // public function getRouteKeyName()
+    // {
+    //     return 'slug';
+    // }
 }

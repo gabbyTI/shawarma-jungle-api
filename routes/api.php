@@ -5,10 +5,12 @@ use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Auth\ResetPasswordController;
 use App\Http\Controllers\Auth\VerificationController;
+use App\Http\Controllers\CartController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\SettingController;
 use App\Http\Controllers\ShippingDetailController;
+use App\Http\Controllers\ShopController;
 use App\Http\Controllers\User\MeController;
 use App\Http\Controllers\Vendor\VendorMeController;
 use App\Http\Controllers\VendorController;
@@ -54,6 +56,20 @@ Route::group(['middleware' => ['assign.guard:user-api', 'auth:user-api']], funct
 
     Route::get('vendors', [VendorController::class, 'getActiveVendors']);
     Route::get('vendors/{vendor}', [VendorController::class, 'getVendor']);
+
+    Route::get('shop/vendors/{vendor}/products', [ShopController::class, 'getVendorProducts']);
+    Route::get('shop/vendors/products/{product}', [ShopController::class, 'getVendorProduct']);
+
+    Route::get('cart', [CartController::class, 'cart']);
+    Route::get('cart/items', [CartController::class, 'cartItems']);
+    Route::get('cart/totals', [CartController::class, 'cartTotals']);
+    Route::post('cart/add-to-cart/{product}', [CartController::class, 'addToCart']);
+    Route::post('cart/remove-from-cart', [CartController::class, 'removeFromCart']);
+    Route::post('cart/clear', [CartController::class, 'clearCart']);
+    Route::post('cart/cart-item-quantity-set', [CartController::class, 'cartItemQuantitySet']);
+    Route::post('cart/increment-cart-item', [CartController::class, 'incrementCartItem']);
+    Route::post('cart/decrement-cart-item', [CartController::class, 'decrementCartItem']);
+    // Route::post('cart/apply-discount/', [CartController::class, 'applyDiscount']);
 
     Route::post('orders/vendor/{vendor}', [OrderController::class, 'placeOrder']);
     Route::get('orders/user', [OrderController::class, 'getUserOrders']);
