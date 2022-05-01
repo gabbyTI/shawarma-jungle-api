@@ -24,6 +24,7 @@ class VendorRepository extends BaseRepository implements IVendor
     {
         $query = (new $this->model)->newQuery();
 
+        $query->where('isActive', true);
         // returns only vendors who have products by default
         $query->has('products');
 

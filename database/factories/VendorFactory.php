@@ -21,7 +21,7 @@ class VendorFactory extends Factory
             "manager_phone" => $this->faker->phoneNumber(),
             'email' => $this->faker->unique()->safeEmail(),
             "address" => $this->faker->address(),
-            "isActive" => true,
+            "is_active" => true,
             "bank_name" => $this->faker->randomElements(['zenith', 'fidelity', 'kuda'], $count = 1, $allowDuplicates = false)[0],
             "bank_account_number" => $this->faker->numerify('##########'),
             "bank_account_name" => $this->faker->name(),

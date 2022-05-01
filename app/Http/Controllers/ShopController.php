@@ -8,6 +8,7 @@ use App\Models\Product;
 use App\Models\Vendor;
 use App\Repositories\Contracts\IProduct;
 use App\Repositories\Eloquent\Criteria\ForVendor;
+use App\Repositories\Eloquent\Criteria\IsActive;
 use Illuminate\Http\Request;
 
 class ShopController extends Controller
@@ -23,7 +24,8 @@ class ShopController extends Controller
     {
         $products = $this->products
             ->withCriteria([
-                new ForVendor($vendor->id)
+                new ForVendor($vendor->id),
+                new IsActive()
             ])
             ->all();
         return ApiResponder::successResponse("Successful", ProductResource::collection($products));

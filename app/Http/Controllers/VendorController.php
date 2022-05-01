@@ -7,7 +7,7 @@ use App\Http\Resources\VendorResource;
 use App\Models\Vendor;
 use App\Repositories\Contracts\IVendor;
 use App\Repositories\Eloquent\Criteria\EagerLoad;
-use App\Repositories\Eloquent\Criteria\IsActiveVendor;
+use App\Repositories\Eloquent\Criteria\IsActive;
 use Illuminate\Http\Request;
 
 /**
@@ -25,7 +25,7 @@ class VendorController extends Controller
     public function getActiveVendors()
     {
         $vendors = $this->vendors->withCriteria([
-            new IsActiveVendor(),
+            new IsActive(),
         ])->all();
 
         return ApiResponder::successResponse("List of active vendors", VendorResource::collection($vendors));

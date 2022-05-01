@@ -28,7 +28,7 @@ class Vendor extends Authenticatable implements JWTSubject, MustVerifyEmail
         "manager_phone",
         'email',
         "address",
-        "isActive",
+        "is_active",
         "bank_name",
         "bank_account_number",
         "bank_account_name",

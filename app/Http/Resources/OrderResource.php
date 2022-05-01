@@ -18,13 +18,14 @@ class OrderResource extends JsonResource
         return [
             'id' => $this->id,
             'amount' => $this->amount,
-            'payment_type' => $this->payment_type,
-            'shipping_method' => $this->delivery_type,
-            'order_items' => $this->order_products,
-            'shippiping_details' => new ShippingDetailResource($this->whenLoaded('shippingDetail')),
+            'paymentType' => $this->payment_type,
+            'shippingMethod' => $this->delivery_type,
+            'status' => $this->status,
+            'orderItems' => $this->order_products,
+            'shippipingDetails' => new ShippingDetailResource($this->whenLoaded('shippingDetail')),
             "vendor" => new VendorResource($this->whenLoaded('vendor')),
             "user" => new UserResource($this->whenLoaded('user')),
-            'create_dates' => [
+            'createDates' => [
                 'creadted_at_human' => $this->created_at->diffForHumans(),
                 'creadted_at' => $this->created_at,
             ]

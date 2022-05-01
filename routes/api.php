@@ -33,7 +33,7 @@ use Illuminate\Support\Facades\Route;
 //                                            PUBLIC ROUTES
 Route::group(['middleware' => ['assign.guard:user-api']], function () {
     Route::get('me', [MeController::class, 'getMe']);
-    Route::get('/vendors/get-vendors-within', [VendorController::class, 'getVendorsWithin']);
+    Route::get('shop/vendors/get-vendors-within', [VendorController::class, 'getVendorsWithin']);
 });
 Route::group(['middleware' => ['assign.guard:vendor-api']], function () {
     Route::get('vendor/me', [VendorMeController::class, 'getMe']);
@@ -57,9 +57,11 @@ Route::group(['middleware' => ['assign.guard:user-api', 'auth:user-api']], funct
     Route::get('vendors', [VendorController::class, 'getActiveVendors']);
     Route::get('vendors/{vendor}', [VendorController::class, 'getVendor']);
 
+    //shop
     Route::get('shop/vendors/{vendor}/products', [ShopController::class, 'getVendorProducts']);
     Route::get('shop/vendors/products/{product}', [ShopController::class, 'getVendorProduct']);
 
+    //cart
     Route::get('cart', [CartController::class, 'cart']);
     Route::get('cart/items', [CartController::class, 'cartItems']);
     Route::get('cart/totals', [CartController::class, 'cartTotals']);
@@ -71,6 +73,7 @@ Route::group(['middleware' => ['assign.guard:user-api', 'auth:user-api']], funct
     Route::post('cart/decrement-cart-item', [CartController::class, 'decrementCartItem']);
     // Route::post('cart/apply-discount/', [CartController::class, 'applyDiscount']);
 
+    //orders
     Route::post('orders/vendor/{vendor}', [OrderController::class, 'placeOrder']);
     Route::get('orders/user', [OrderController::class, 'getUserOrders']);
 });
@@ -78,14 +81,16 @@ Route::group(['middleware' => ['assign.guard:user-api', 'auth:user-api']], funct
 Route::group(['prefix' => 'vendor', 'middleware' => ['assign.guard:vendor-api', 'auth:vendor-api']], function () {
 
     Route::put('settings/password', [SettingController::class, 'updateVendorPassword']);
-
+    //products
     Route::get('products', [ProductController::class, 'getVendorProducts']);
     Route::get('products/{product}', [ProductController::class, 'getVendorProduct']);
     Route::post('products', [ProductController::class, 'createProduct']);
     Route::put('products/{product}', [ProductController::class, 'updateProduct']);
     Route::delete('products/{product}', [ProductController::class, 'deleteProduct']);
-
-    Route::get('orders/vendor', [OrderController::class, 'getVendorOrders']);
+    //orders
+    Route::get('orders/', [OrderController::class, 'getVendorOrders']);
+    Route::get('orders/{order}', [OrderController::class, 'getVendorOrder']);
+    Route::patch('orders/{order}/set-order-status', [OrderController::class, 'setOrderStatus']);
 });
 //                                            END OF AUTHENTICATED ROUTES
 

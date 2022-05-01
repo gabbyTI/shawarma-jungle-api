@@ -20,7 +20,7 @@ class CreateVendorsTable extends Migration
             $table->string('manager_phone');
             $table->string('email');
             $table->string('address');
-            $table->boolean('isActive')->default(false);
+            $table->boolean('is_active')->default(false);
             $table->string('bank_name');
             $table->string('bank_account_number');
             $table->string('bank_account_name');
