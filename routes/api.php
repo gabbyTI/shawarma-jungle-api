@@ -7,6 +7,7 @@ use App\Http\Controllers\Auth\ResetPasswordController;
 use App\Http\Controllers\Auth\VerificationController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\OrderController;
+use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\SettingController;
 use App\Http\Controllers\ShippingDetailController;
@@ -14,7 +15,6 @@ use App\Http\Controllers\ShopController;
 use App\Http\Controllers\User\MeController;
 use App\Http\Controllers\Vendor\VendorMeController;
 use App\Http\Controllers\VendorController;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -31,9 +31,11 @@ use Illuminate\Support\Facades\Route;
 // API Version 1
 // Route::group(['prefix' => 'v1'], function () {
 //                                            PUBLIC ROUTES
+
 Route::group(['middleware' => ['assign.guard:user-api']], function () {
     Route::get('me', [MeController::class, 'getMe']);
     Route::get('shop/vendors/get-vendors-within', [VendorController::class, 'getVendorsWithin']);
+    Route::post('paystack/webhook', [PaymentController::class, 'payWebhook']);
 });
 Route::group(['middleware' => ['assign.guard:vendor-api']], function () {
     Route::get('vendor/me', [VendorMeController::class, 'getMe']);
@@ -60,6 +62,10 @@ Route::group(['middleware' => ['assign.guard:user-api', 'auth:user-api']], funct
     //shop
     Route::get('shop/vendors/{vendor}/products', [ShopController::class, 'getVendorProducts']);
     Route::get('shop/vendors/products/{product}', [ShopController::class, 'getVendorProduct']);
+
+    //payment
+    Route::post('pay', [PaymentController::class, 'pay']);
+
 
     //cart
     Route::get('cart', [CartController::class, 'cart']);

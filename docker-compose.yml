@@ -67,3 +67,16 @@ services:
             - 8081:80
         networks:
             - laravel
+    ngrok:
+        image: wernight/ngrok:latest
+        container_name: shawarma_jungle-ngrok
+
+        ports:
+            - 4040:4040
+        environment:
+            NGROK_AUTH: ${NGROK_AUTH_KEY}
+            NGROK_REGION: eu
+            NGROK_PROTOCOL: http
+            NGROK_PORT: shawarma_jungle-nginx:80
+        networks:
+            - laravel
