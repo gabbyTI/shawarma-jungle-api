@@ -5,11 +5,13 @@ namespace App\Providers;
 use App\Repositories\Contracts\IOrder;
 use App\Repositories\Contracts\IProduct;
 use App\Repositories\Contracts\IShippingDetail;
+use App\Repositories\Contracts\ITransaction;
 use App\Repositories\Contracts\IUser;
 use App\Repositories\Contracts\IVendor;
 use App\Repositories\Eloquent\OrderRepository;
 use App\Repositories\Eloquent\ProductRepository;
 use App\Repositories\Eloquent\ShippingDetailRepository;
+use App\Repositories\Eloquent\TransactionRepository;
 use App\Repositories\Eloquent\UserRepository;
 use App\Repositories\Eloquent\VendorRepository;
 use Illuminate\Support\ServiceProvider;
@@ -39,5 +41,6 @@ class RepositoryServiceProvider extends ServiceProvider
         $this->app->bind(IProduct::class, ProductRepository::class);
         $this->app->bind(IOrder::class, OrderRepository::class);
         $this->app->bind(IShippingDetail::class, ShippingDetailRepository::class);
+        $this->app->bind(ITransaction::class, TransactionRepository::class);
     }
 }

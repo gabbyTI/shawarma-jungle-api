@@ -3,13 +3,23 @@
 namespace App\Http\Controllers;
 
 use App\Helpers\ApiResponder;
+use App\Models\Order;
+use App\Repositories\Contracts\ITransaction;
 use App\Services\Paystack;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 
 class PaymentController extends Controller
 {
-    public function pay()
+
+    protected $transactions;
+
+    public function __construct(ITransaction $transactions)
+    {
+        $this->transactions = $transactions;
+    }
+
+    public function pay(Order $order)
     {
         request()->validate([
             'email' => ['required', 'email'],
@@ -20,6 +30,9 @@ class PaymentController extends Controller
         $payment = $payment->makePaymentRequest([
             'email' => request('email'),
             'amount' => request('amount'),
+            'metadata' => [
+                'order_id' => $order->id
+            ]
         ]);
 
         return ApiResponder::successResponse("Payment details", $payment->getResponse()['data']);
@@ -45,8 +58,19 @@ class PaymentController extends Controller
         // $bank = $event->authorization->receiver_bank;
         $ref = $event->data->reference;
         $email = $event->data->customer->email;
-        $amount = $event->data->amount;
+        $amountInKobo = $event->data->amount;
+        $status = $event->data->status;
+        $paystackFeeInKobo = $event->data->fees;
+        $orderId = $event->data->metadata->order_id;
 
-        Log::info($ref . ' ' . $email . ' ' . $amount);
+        Log::info($ref . ' ' . $email . ' ' . $amountInKobo);
+
+        $this->transactions->create([
+            'order_id' => $orderId,
+            'reference' => $ref,
+            'amount' => $amountInKobo,
+            'status' => $status,
+            'paystack_fee' => $paystackFeeInKobo,
+        ]);
     }
 }

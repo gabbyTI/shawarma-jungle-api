@@ -64,7 +64,7 @@ Route::group(['middleware' => ['assign.guard:user-api', 'auth:user-api']], funct
     Route::get('shop/vendors/products/{product}', [ShopController::class, 'getVendorProduct']);
 
     //payment
-    Route::post('pay', [PaymentController::class, 'pay']);
+    Route::post('pay/{order}', [PaymentController::class, 'pay']);
 
 
     //cart
