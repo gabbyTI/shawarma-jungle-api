@@ -1,6 +1,7 @@
-# The Project Idea API
+# The Shawarma Jungle Ecommerce API
 
 A Laravel based API that exposes endpoints for an e-commerce application.
+Click [here for the Postman documentation](https://documenter.getpostman.com/view/9638778/UVeGrkqK) of this application.
 
 -   [Dependencies](#dependencies)
 -   [Initial Setup](#initial-setup)
