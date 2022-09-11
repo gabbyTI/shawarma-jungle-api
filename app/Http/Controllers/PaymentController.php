@@ -56,21 +56,23 @@ class PaymentController extends Controller
         // Do something — that will not take long — with $event
         $event = json_decode($input);
         // $bank = $event->authorization->receiver_bank;
-        $ref = $event->data->reference;
-        $email = $event->data->customer->email;
-        $amountInKobo = $event->data->amount;
-        $status = $event->data->status;
-        $paystackFeeInKobo = $event->data->fees;
-        $orderId = $event->data->metadata->order_id;
+        if ($event->event  == 'charge.success') {
+            $ref = $event->data->reference;
+            $email = $event->data->customer->email;
+            $amountInKobo = $event->data->amount;
+            $status = $event->data->status;
+            $paystackFeeInKobo = $event->data->fees;
+            $orderId = $event->data->metadata->order_id;
 
-        Log::info($ref . ' ' . $email . ' ' . $amountInKobo);
+            Log::info($ref . ' ' . $email . ' ' . $amountInKobo);
 
-        $this->transactions->create([
-            'order_id' => $orderId,
-            'reference' => $ref,
-            'amount' => $amountInKobo,
-            'status' => $status,
-            'paystack_fee' => $paystackFeeInKobo,
-        ]);
+            $this->transactions->create([
+                'order_id' => $orderId,
+                'reference' => $ref,
+                'amount' => $amountInKobo,
+                'status' => $status,
+                'paystack_fee' => $paystackFeeInKobo,
+            ]);
+        }
     }
 }
