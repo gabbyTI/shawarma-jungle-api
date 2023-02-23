@@ -53,11 +53,14 @@ class ShippingDetailController extends Controller
         return ApiResponder::successResponse("created shipping address", new ShippingDetailResource($shippingDetail), 201);
     }
 
-    public function getUserShippingDetails()
+    public function getUserShippingDetails(Request $request)
     {
+        $perPage = $request->query('perPage', 10); // retrieve perPage value from query params
+        $page = $request->query('page', 1); // retrieve page value from query params
+
         $shippingDetails = $this->shippingDetails->withCriteria([
             new ForUser(auth()->id())
-        ])->all();
+        ])->all($perPage, $page);
 
         return ApiResponder::successResponse("Successful", ShippingDetailResource::collection($shippingDetails));
     }

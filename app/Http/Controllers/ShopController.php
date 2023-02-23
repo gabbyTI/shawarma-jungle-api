@@ -20,14 +20,17 @@ class ShopController extends Controller
         $this->products = $products;
     }
 
-    public function getVendorProducts(Vendor $vendor)
+    public function getVendorProducts(Request $request, Vendor $vendor)
     {
+        $perPage = $request->query('perPage', 10); // retrieve perPage value from query params
+        $page = $request->query('page', 1); // retrieve page value from query params
+
         $products = $this->products
             ->withCriteria([
                 new ForVendor($vendor->id),
                 new IsActive()
             ])
-            ->all();
+            ->all($perPage, $page);
         return ApiResponder::successResponse("Successful", ProductResource::collection($products));
     }
 

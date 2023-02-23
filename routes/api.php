@@ -86,6 +86,7 @@ Route::group(['middleware' => ['assign.guard:user-api', 'auth:user-api']], funct
 
 Route::group(['prefix' => 'vendor', 'middleware' => ['assign.guard:vendor-api', 'auth:vendor-api']], function () {
 
+    Route::put('settings/profile', [SettingController::class, 'updateVendorProfile']);
     Route::put('settings/password', [SettingController::class, 'updateVendorPassword']);
     //products
     Route::get('products', [ProductController::class, 'getVendorProducts']);

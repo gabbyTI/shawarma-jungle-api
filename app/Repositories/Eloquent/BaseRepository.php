@@ -17,9 +17,9 @@ abstract class BaseRepository implements IBase, ICriteria
         $this->model = $this->getModelClass();
     }
 
-    public function all()
+    public function all($perPage = 10, $page = 1)
     {
-        return $this->model->get();
+        return $this->model->paginate($perPage, ['*'], 'page', $page);
     }
 
     public function find($id)

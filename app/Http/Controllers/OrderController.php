@@ -51,20 +51,26 @@ class OrderController extends Controller
         return ApiResponder::successResponse("Order created", new OrderResource($order), 201);
     }
 
-    public function getUserOrders()
+    public function getUserOrders(Request $request)
     {
+        $perPage = $request->query('perPage', 10); // retrieve perPage value from query params
+        $page = $request->query('page', 1); // retrieve page value from query params
+
         $orders = $this->orders->withCriteria([
             new ForUser(auth()->id())
-        ])->all();
+        ])->all($perPage, $page);
 
         return ApiResponder::successResponse("Fetched user orders", OrderResource::collection($orders));
     }
 
-    public function getVendorOrders()
+    public function getVendorOrders(Request $request)
     {
+        $perPage = $request->query('perPage', 10); // retrieve perPage value from query params
+        $page = $request->query('page', 1); // retrieve page value from query params
+
         $orders = $this->orders->withCriteria([
             new ForVendor(auth()->id())
-        ])->all();
+        ])->all($perPage, $page);
 
         return ApiResponder::successResponse("Fetched vendor orders", OrderResource::collection($orders));
     }

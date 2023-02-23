@@ -107,13 +107,16 @@ class ProductController extends Controller
         return ApiResponder::successResponse("Updated product successfully", new ProductResource($product));
     }
 
-    public function getVendorProducts()
+    public function getVendorProducts(Request $request)
     {
+        $perPage = $request->query('perPage', 10); // retrieve perPage value from query params
+        $page = $request->query('page', 1); // retrieve page value from query params
+
         $products = $this->products
             ->withCriteria([
                 new ForVendor(auth()->id())
             ])
-            ->all();
+            ->all($perPage, $page);
         return ApiResponder::successResponse("Successful", ProductResource::collection($products));
     }
 

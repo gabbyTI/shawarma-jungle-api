@@ -22,11 +22,14 @@ class VendorController extends Controller
         $this->vendors = $vendors;
     }
 
-    public function getActiveVendors()
+    public function getActiveVendors(Request $request)
     {
+        $perPage = $request->query('perPage', 10); // retrieve perPage value from query params
+        $page = $request->query('page', 1); // retrieve page value from query params
+
         $vendors = $this->vendors->withCriteria([
             new IsActive(),
-        ])->all();
+        ])->all($perPage, $page);
 
         return ApiResponder::successResponse("List of active vendors", VendorResource::collection($vendors));
     }
