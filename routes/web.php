@@ -18,7 +18,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/api/doc', function () {
+Route::get('/doc', function () {
     // return view('welcome');
     return File::get(public_path() . '/documentation/index.html');
 })->name('documentation');
