@@ -3,8 +3,6 @@
 namespace App\Http\Middleware;
 
 use Closure;
-use Illuminate\Http\Request;
-use Illuminate\Support\Str;
 
 class ApiKeyMiddleware
 {
@@ -17,14 +15,14 @@ class ApiKeyMiddleware
      */
     public function handle($request, Closure $next)
     {
-        // Check if the current route is defined in the api.php file
-        if ($request->is('api/*')) {
-            $apiKey = $request->header('X-API-Key');
+        // Check if the api key passed in the header is authorized
 
-            if (!in_array($apiKey, explode(',', config('app.api_keys')))) {
-                return response()->json(['message' => 'Unauthorized.'], 401);
-            }
+        $apiKey = $request->header('X-API-Key');
+
+        if (!in_array($apiKey, explode(',', config('app.api_keys')))) {
+            return response()->json(['message' => 'Unauthorized.'], 401);
         }
+        // }
 
         return $next($request);
     }
